@@ -2,9 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:swifttra/authentication/car_info_screen.dart';
 import 'package:swifttra/authentication/login_screen.dart';
 import 'package:swifttra/global/global.dart';
+import 'package:swifttra/splashScreen/splash_screen.dart';
 import 'package:swifttra/widgets/progress_dialog.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -28,11 +28,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
     } else if (passwordTextEditingController.text.length < 6) {
       Fluttertoast.showToast(msg: "Password must be atleast 6 Characters.");
     } else {
-      saveDriverInfoNow();
+      saveUserInfoNow();
     }
   }
 
-  saveDriverInfoNow() async {
+  saveUserInfoNow() async {
     showDialog(
         context: context,
         barrierDismissible: false,
@@ -54,21 +54,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
         .user;
 
     if (firebaseUser != null) {
-      Map driverMap = {
+      Map userMap = {
         "id": firebaseUser.uid,
         "name": nameTextEditingController.text.trim(),
         "email": emailTextEditingController.text.trim(),
         "phone": phoneTextEditingController.text.trim(),
       };
 
-      DatabaseReference driversRef =
-          FirebaseDatabase.instance.ref().child("drivers");
-      driversRef.child(firebaseUser.uid).set(driverMap);
+      DatabaseReference reference =
+          FirebaseDatabase.instance.ref().child("users");
+      reference.child(firebaseUser.uid).set(userMap);
 
       currentFirebaseUser = firebaseUser;
       Fluttertoast.showToast(msg: "Account has been Created.");
       Navigator.push(
-          context, MaterialPageRoute(builder: (c) => CarInfoScreen()));
+          context, MaterialPageRoute(builder: (c) => MySplashScreen()));
     } else {
       Navigator.pop(context);
       Fluttertoast.showToast(msg: "Account has not been Created.");
@@ -78,7 +78,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.orange,
+      backgroundColor: Color.fromARGB(255, 255, 136, 0),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -88,14 +88,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 height: 10,
               ),
               Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Image.asset("images/logo1.png"),
+                padding: const EdgeInsets.all(55.0),
+                child: Image.asset("images/logo.png"),
               ),
               const SizedBox(
                 height: 10,
               ),
               const Text(
-                "Register as a Driver",
+                "Register as a user",
                 style: TextStyle(
                   fontSize: 26,
                   color: Colors.white,
@@ -195,19 +195,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
               ),
               const SizedBox(
-                height: 20,
+                height: 30,
               ),
               ElevatedButton(
                 onPressed: () {
                   validateForm();
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.orange,
+                  primary: Colors.white,
                 ),
                 child: const Text(
                   "Create Account",
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Colors.orange,
                     fontSize: 18,
                   ),
                 ),

@@ -1,16 +1,19 @@
+import 'dart:convert';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:flutter_geofire/flutter_geofire.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:http/http.dart' as http;
 import 'package:swifttra/assistants/request_assistant.dart';
 import 'package:swifttra/global/global.dart';
 import 'package:swifttra/global/map_key.dart';
 import 'package:swifttra/infoHandler/app_info.dart';
 import 'package:swifttra/models/direction_details_info.dart';
 import 'package:swifttra/models/directions.dart';
-
-import '../models/trips_history_model.dart';
+import 'package:swifttra/models/trips_history_model.dart';
+import 'package:swifttra/models/user_model.dart';
 
 class AssistantMethods {
   static Future<String> searchAddressForGeographicCoOrdinates(
@@ -34,6 +37,21 @@ class AssistantMethods {
     }
 
     return humanReadableAddress;
+  }
+
+  static void readCurrentOnlineUserInfo() async {
+    currentFirebaseUser = fAuth.currentUser;
+
+    DatabaseReference userRef = FirebaseDatabase.instance
+        .ref()
+        .child("users")
+        .child(currentFirebaseUser!.uid);
+
+    userRef.once().then((snap) {
+      if (snap.snapshot.value != null) {
+        userModelCurrentInfo = UserModel.fromSnapshot(snap.snapshot);
+      }
+    });
   }
 
   static Future<DirectionDetailsInfo?>
@@ -66,17 +84,6 @@ class AssistantMethods {
     return directionDetailsInfo;
   }
 
-  static pauseLiveLocationUpdates() {
-    streamSubscriptionPosition!.pause();
-    Geofire.removeLocation(currentFirebaseUser!.uid);
-  }
-
-  static resumeLiveLocationUpdates() {
-    streamSubscriptionPosition!.resume();
-    Geofire.setLocation(currentFirebaseUser!.uid,
-        driverCurrentPosition!.latitude, driverCurrentPosition!.longitude);
-  }
-
   static double calculateFareAmountFromOriginToDestination(
       DirectionDetailsInfo directionDetailsInfo) {
     double timeTraveledFareAmountPerMinute =
@@ -88,27 +95,52 @@ class AssistantMethods {
     double totalFareAmount = timeTraveledFareAmountPerMinute +
         distanceTraveledFareAmountPerKilometer;
 
-    if (driverVehicleType == "bike") {
-      double resultFareAmount = (totalFareAmount.truncate()) / 2.0;
-      return resultFareAmount;
-    } else if (driverVehicleType == "uber-go") {
-      return totalFareAmount.truncate().toDouble();
-    } else if (driverVehicleType == "uber-x") {
-      double resultFareAmount = (totalFareAmount.truncate()) * 2.0;
-      return resultFareAmount;
-    } else {
-      return totalFareAmount.truncate().toDouble();
-    }
+    return double.parse(totalFareAmount.toStringAsFixed(1));
+  }
+
+  static sendNotificationToDriverNow(
+      String deviceRegistrationToken, String userRideRequestId, context) async {
+    String destinationAddress = userDropOffAddress;
+
+    Map<String, String> headerNotification = {
+      'Content-Type': 'application/json',
+      'Authorization': cloudMessagingServerToken,
+    };
+
+    Map bodyNotification = {
+      "body": "Destination Address: \n$destinationAddress.",
+      "title": "New Trip Request"
+    };
+
+    Map dataMap = {
+      "click_action": "FLUTTER_NOTIFICATION_CLICK",
+      "id": "1",
+      "status": "done",
+      "rideRequestId": userRideRequestId
+    };
+
+    Map officialNotificationFormat = {
+      "notification": bodyNotification,
+      "data": dataMap,
+      "priority": "high",
+      "to": deviceRegistrationToken,
+    };
+
+    var responseNotification = http.post(
+      Uri.parse("https://fcm.googleapis.com/fcm/send"),
+      headers: headerNotification,
+      body: jsonEncode(officialNotificationFormat),
+    );
   }
 
   //retrieve the trips KEYS for online user
   //trip key = ride request key
-  static void readTripsKeysForOnlineDriver(context) {
+  static void readTripsKeysForOnlineUser(context) {
     FirebaseDatabase.instance
         .ref()
         .child("All Ride Requests")
-        .orderByChild("driverId")
-        .equalTo(fAuth.currentUser!.uid)
+        .orderByChild("userName")
+        .equalTo(userModelCurrentInfo!.name)
         .once()
         .then((snap) {
       if (snap.snapshot.value != null) {
@@ -153,24 +185,5 @@ class AssistantMethods {
         }
       });
     }
-  }
-
-  //readDriverEarnings
-  static void readDriverEarnings(context) {
-    FirebaseDatabase.instance
-        .ref()
-        .child("drivers")
-        .child(fAuth.currentUser!.uid)
-        .child("earnings")
-        .once()
-        .then((snap) {
-      if (snap.snapshot.value != null) {
-        String driverEarnings = snap.snapshot.value.toString();
-        Provider.of<AppInfo>(context, listen: false)
-            .updateDriverTotalEarnings(driverEarnings);
-      }
-    });
-
-    readTripsKeysForOnlineDriver(context);
   }
 }

@@ -1,20 +1,18 @@
-import 'dart:async';
-import 'dart:ui';
-import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:swifttra/models/driver_data.dart';
+import 'package:swifttra/models/direction_details_info.dart';
+import 'package:swifttra/models/user_model.dart';
 
 final FirebaseAuth fAuth = FirebaseAuth.instance;
 User? currentFirebaseUser;
-StreamSubscription<Position>? streamSubscriptionPosition;
-StreamSubscription<Position>? streamSubscriptionDriverLivePosition;
-AssetsAudioPlayer audioPlayer = AssetsAudioPlayer();
-Position? driverCurrentPosition;
-DriverData onlineDriverData = DriverData();
-String? driverVehicleType = "";
-String titleStarsRating = "Good";
-bool isDriverActive = false;
-String statusText = "Now Offline";
-Color buttonColor = Colors.grey;
+UserModel? userModelCurrentInfo;
+List dList = []; //online-active drivers Information List
+DirectionDetailsInfo? tripDirectionDetailsInfo;
+String? chosenDriverId = "";
+String cloudMessagingServerToken =
+    "key=AAAABIZYqWo:APA91bG4oAEza8NTXJLhmSt8p_M7jZkHE0pb4CuTHTiWh-9XZJqPIiWvNAcDHRP4UksvN4vQbEC1V5j0zLEmseezSlopjE_1eNmb5jjMRk1h-S-G_45pHKGF_6sbkTJgoa9rcL2XqaPa";
+String userDropOffAddress = "";
+String driverCarDetails = "";
+String driverName = "";
+String driverPhone = "";
+double countRatingStars = 0.0;
+String titleStarsRating = "";

@@ -22,11 +22,11 @@ class _LoginScreenState extends State<LoginScreen> {
     } else if (passwordTextEditingController.text.isEmpty) {
       Fluttertoast.showToast(msg: "Password is required.");
     } else {
-      loginDriverNow();
+      loginUserNow();
     }
   }
 
-  loginDriverNow() async {
+  loginUserNow() async {
     showDialog(
         context: context,
         barrierDismissible: false,
@@ -49,7 +49,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
     if (firebaseUser != null) {
       DatabaseReference driversRef =
-          FirebaseDatabase.instance.ref().child("drivers");
+          FirebaseDatabase.instance.ref().child("users");
       driversRef.child(firebaseUser.uid).once().then((driverKey) {
         final snap = driverKey.snapshot;
         if (snap.value != null) {
@@ -73,7 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Color.fromARGB(255, 255, 136, 0),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
@@ -83,19 +83,19 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 30,
               ),
               Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Image.asset("images/logo1.png"),
-              ),
-              const SizedBox(
-                height: 10,
+                padding: const EdgeInsets.all(55.0),
+                child: Image.asset("images/logo.png"),
               ),
               const Text(
-                "Login as a Driver",
+                "Login as a User",
                 style: TextStyle(
                   fontSize: 26,
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                 ),
+              ),
+              const SizedBox(
+                height: 0,
               ),
               TextField(
                 controller: emailTextEditingController,
@@ -152,12 +152,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   validateForm();
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.orange,
+                  primary: Colors.white,
                 ),
                 child: const Text(
                   "Login",
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Colors.orange,
                     fontSize: 18,
                   ),
                 ),

@@ -1,8 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:swifttra/infoHandler/app_info.dart';
 import 'package:swifttra/splashScreen/splash_screen.dart';
-import 'infoHandler/app_info.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,7 +13,7 @@ void main() async {
       child: ChangeNotifierProvider(
         create: (context) => AppInfo(),
         child: MaterialApp(
-          title: 'Drivers App',
+          title: 'Swifttra Driver',
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
