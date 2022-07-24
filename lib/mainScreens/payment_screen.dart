@@ -22,10 +22,9 @@ class PayMent extends StatefulWidget {
 class _PayMentState extends State<PayMent> {
   TextEditingController _controller = TextEditingController();
 
-
   @override
   void initState() {
-    _paystack = super.initState();
+    //  _paystack = super.initState();
   }
 
   @override
