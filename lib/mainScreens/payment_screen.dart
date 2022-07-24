@@ -1,52 +1,70 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_paystack/flutter_paystack.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 void main() {
-  runApp(App());
+  runApp(const MyApp());
 }
 
-class App extends StatelessWidget {
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(body: PayMent()),
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
-class PayMent extends StatefulWidget {
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
+
+  final String title;
+
   @override
-  State<PayMent> createState() => _PayMentState();
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _PayMentState extends State<PayMent> {
-  TextEditingController _controller = TextEditingController();
-
-  @override
-  void initState() {
-    //  _paystack = super.initState();
-  }
+class _MyHomePageState extends State<MyHomePage> {
+  final Completer<WebViewController> _controller =
+      Completer<WebViewController>();
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            TextField(
-              controller: _controller,
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide(
-                        width: 5,
-                        color: Color.fromARGB(255, 255, 136, 0),
-                      ))),
-            ),
-            RaisedButton(onPressed: null, child: Text("Pay Now"))
-          ],
-        ),
-      ),
-    );
+    return Scaffold(
+        body: Container(
+      height: MediaQuery.of(context).size.height,
+      width: MediaQuery.of(context).size.width,
+      child: Builder(builder: (BuildContext context) {
+        return WebView(
+          initialUrl: "https://paystack.com/pay/swifttra",
+          javascriptMode: JavascriptMode.unrestricted,
+          onWebViewCreated: (WebViewController webViewController) {
+            _controller.complete(webViewController);
+          },
+          onProgress: (int progress) {
+            print("progress $progress%");
+          },
+          javascriptChannels: <JavascriptChannel>{
+            _toasterJavascriptChannel(context)
+          },
+        );
+      }),
+    ));
+  }
+
+  JavascriptChannel _toasterJavascriptChannel(BuildContext context) {
+    return JavascriptChannel(
+        name: "Toaster",
+        onMessageReceived: (JavascriptMessage message) {
+          Scaffold.of(context).showSnackBar(
+            SnackBar(content: Text(message.message)),
+          );
+        });
   }
 }

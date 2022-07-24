@@ -48,7 +48,7 @@ dependencies:
   smooth_star_rating_null_safety: 1.0.4+2
   animated_text_kit: ^4.2.2
   intl: ^0.17.0
-  flutter_paystack: ^1.0.5+1
+  webview_flutter: ^3.0.4
 
 
 dev_dependencies:
