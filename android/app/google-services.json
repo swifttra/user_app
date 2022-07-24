@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "19433826666",
+    "firebase_url": "https://swifttra-app-default-rtdb.firebaseio.com",
+    "project_id": "swifttra-app",
+    "storage_bucket": "swifttra-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:19433826666:android:5772653629db27de995d13",
+        "android_client_info": {
+          "package_name": "com.GeorgeFabunmi.swifttra"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "19433826666-gnu7qa7ojlgeditpssj1a7cohrkhl1mq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6SDb-hirJ1NKwVnf9jGk388W5fHQyeec"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "19433826666-gnu7qa7ojlgeditpssj1a7cohrkhl1mq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
