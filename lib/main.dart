@@ -28,13 +28,15 @@ void main() async {
 class MyApp extends StatefulWidget {
   final Widget? child;
 
-  MyApp({this.child});
+  // ignore: use_key_in_widget_constructors
+  const MyApp({this.child});
 
   static void restartApp(BuildContext context) {
     context.findAncestorStateOfType<_MyAppState>()!.restartApp();
   }
 
   @override
+  // ignore: library_private_types_in_public_api
   _MyAppState createState() => _MyAppState();
 }
 

@@ -8,7 +8,10 @@ import 'package:swifttra/splashScreen/splash_screen.dart';
 import 'package:swifttra/widgets/progress_dialog.dart';
 
 class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
+
   @override
+  // ignore: library_private_types_in_public_api
   _LoginScreenState createState() => _LoginScreenState();
 }
 
@@ -43,7 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
     )
             .catchError((msg) {
       Navigator.pop(context);
-      Fluttertoast.showToast(msg: "Error: " + msg.toString());
+      Fluttertoast.showToast(msg: "Error: $msg");
     }))
         .user;
 
@@ -65,6 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
         }
       });
     } else {
+      // ignore: use_build_context_synchronously
       Navigator.pop(context);
       Fluttertoast.showToast(msg: "Error Occurred during Login.");
     }
@@ -73,7 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 255, 136, 0),
+      backgroundColor: const Color.fromARGB(255, 255, 136, 0),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
@@ -169,7 +173,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 onPressed: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (c) => SignUpScreen()));
+                      MaterialPageRoute(builder: (c) => const SignUpScreen()));
                 },
               ),
             ],

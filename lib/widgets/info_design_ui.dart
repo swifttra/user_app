@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class InfoDesignUIWidget extends StatefulWidget {
   String? textInfo;
   IconData? iconData;
 
-  InfoDesignUIWidget({this.textInfo, this.iconData});
+  InfoDesignUIWidget({Key? key, this.textInfo, this.iconData})
+      : super(key: key);
 
   @override
   State<InfoDesignUIWidget> createState() => _InfoDesignUIWidgetState();

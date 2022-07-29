@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:swifttra/infoHandler/app_info.dart';
 import 'package:swifttra/mainScreens/main_screen.dart';
 import 'package:swifttra/widgets/history_design_ui.dart';
-import 'package:swifttra/widgets/my_drawer.dart';
 
 class TripsHistoryScreen extends StatefulWidget {
+  const TripsHistoryScreen({Key? key}) : super(key: key);
+
   @override
   State<TripsHistoryScreen> createState() => _TripsHistoryScreenState();
 }
@@ -17,13 +17,13 @@ class _TripsHistoryScreenState extends State<TripsHistoryScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 255, 136, 0),
+        backgroundColor: const Color.fromARGB(255, 255, 136, 0),
         title: const Text("Trips History"),
         leading: IconButton(
           icon: const Icon(Icons.close),
           onPressed: () {
             Navigator.push(
-                context, MaterialPageRoute(builder: (c) => MainScreen()));
+                context, MaterialPageRoute(builder: (c) => const MainScreen()));
           },
         ),
       ),

@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:async';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -22,7 +24,10 @@ import 'package:swifttra/widgets/pay_fare_amount_dialog.dart';
 import 'package:swifttra/widgets/progress_dialog.dart';
 
 class MainScreen extends StatefulWidget {
+  const MainScreen({Key? key}) : super(key: key);
+
   @override
+  // ignore: library_private_types_in_public_api
   _MainScreenState createState() => _MainScreenState();
 }
 
@@ -94,7 +99,8 @@ class _MainScreenState extends State<MainScreen> {
     String humanReadableAddress =
         await AssistantMethods.searchAddressForGeographicCoOrdinates(
             userCurrentPosition!, context);
-    print("this is your address = " + humanReadableAddress);
+    // ignore: avoid_print
+    print("this is your address = $humanReadableAddress");
 
     userName = userModelCurrentInfo!.name!;
     userEmail = userModelCurrentInfo!.email!;
@@ -263,8 +269,8 @@ class _MainScreenState extends State<MainScreen> {
       }
 
       setState(() {
-        driverRideStatus = "Driver is Coming :: " +
-            directionDetailsInfo.duration_text.toString();
+        driverRideStatus =
+            "Driver is Coming :: ${directionDetailsInfo.duration_text}";
       });
 
       requestPositionInfo = true;
@@ -293,8 +299,8 @@ class _MainScreenState extends State<MainScreen> {
       }
 
       setState(() {
-        driverRideStatus = "Going towards Destination :: " +
-            directionDetailsInfo.duration_text.toString();
+        driverRideStatus =
+            "Going towards Destination :: ${directionDetailsInfo.duration_text}";
       });
 
       requestPositionInfo = true;
@@ -303,7 +309,7 @@ class _MainScreenState extends State<MainScreen> {
 
   searchNearestOnlineDrivers() async {
     //no active driver available
-    if (onlineNearByAvailableDriversList.length == 0) {
+    if (onlineNearByAvailableDriversList.isEmpty) {
       //cancel/delete the RideRequest Information
       referenceRideRequest!.remove();
 
@@ -453,7 +459,7 @@ class _MainScreenState extends State<MainScreen> {
 
     return Scaffold(
       key: sKey,
-      drawer: Container(
+      drawer: SizedBox(
         width: 265,
         child: Theme(
           data: Theme.of(context).copyWith(
@@ -539,7 +545,7 @@ class _MainScreenState extends State<MainScreen> {
                         children: [
                           const Icon(
                             Icons.add_location_alt_outlined,
-                            color: Color.fromARGB(255, 255, 136, 0),
+                            color: Colors.grey,
                           ),
                           const SizedBox(
                             width: 12.0,
@@ -549,23 +555,17 @@ class _MainScreenState extends State<MainScreen> {
                             children: [
                               const Text(
                                 "From",
-                                style: TextStyle(
-                                    color: Color.fromARGB(255, 255, 136, 0),
-                                    fontSize: 12),
+                                style:
+                                    TextStyle(color: Colors.grey, fontSize: 12),
                               ),
                               Text(
                                 Provider.of<AppInfo>(context)
                                             .userPickUpLocation !=
                                         null
-                                    ? (Provider.of<AppInfo>(context)
-                                                .userPickUpLocation!
-                                                .locationName!)
-                                            .substring(0, 24) +
-                                        "..."
-                                    : "not getting location",
+                                    ? "${(Provider.of<AppInfo>(context).userPickUpLocation!.locationName!).substring(0, 24)}..."
+                                    : "not getting address",
                                 style: const TextStyle(
-                                    color: Color.fromARGB(255, 255, 136, 0),
-                                    fontSize: 14),
+                                    color: Colors.grey, fontSize: 14),
                               ),
                             ],
                           ),
@@ -589,7 +589,7 @@ class _MainScreenState extends State<MainScreen> {
                           var responseFromSearchScreen = await Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (c) => SearchPlacesScreen()));
+                                  builder: (c) => const SearchPlacesScreen()));
 
                           if (responseFromSearchScreen == "obtainedDropoff") {
                             setState(() {
@@ -647,10 +647,6 @@ class _MainScreenState extends State<MainScreen> {
                       const SizedBox(height: 16.0),
 
                       ElevatedButton(
-                        child: const Text(
-                          "Request a Ride",
-                          style: TextStyle(color: Colors.white),
-                        ),
                         onPressed: () {
                           if (Provider.of<AppInfo>(context, listen: false)
                                   .userDropOffLocation !=
@@ -662,11 +658,15 @@ class _MainScreenState extends State<MainScreen> {
                           }
                         },
                         style: ElevatedButton.styleFrom(
-                          primary: Color.fromARGB(255, 255, 136, 0),
+                          primary: const Color.fromARGB(255, 255, 136, 0),
                           textStyle: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
+                        ),
+                        child: const Text(
+                          "Request a Ride",
+                          style: TextStyle(color: Colors.white),
                         ),
                       ),
                     ],
@@ -864,7 +864,9 @@ class _MainScreenState extends State<MainScreen> {
 
     Navigator.pop(context);
 
+    // ignore: avoid_print
     print("These are points = ");
+    // ignore: avoid_print
     print(directionDetailsInfo!.e_points);
 
     PolylinePoints pPoints = PolylinePoints();
@@ -874,10 +876,10 @@ class _MainScreenState extends State<MainScreen> {
     pLineCoOrdinatesList.clear();
 
     if (decodedPolyLinePointsResultList.isNotEmpty) {
-      decodedPolyLinePointsResultList.forEach((PointLatLng pointLatLng) {
+      for (var pointLatLng in decodedPolyLinePointsResultList) {
         pLineCoOrdinatesList
             .add(LatLng(pointLatLng.latitude, pointLatLng.longitude));
-      });
+      }
     }
 
     polyLineSet.clear();
@@ -970,6 +972,7 @@ class _MainScreenState extends State<MainScreen> {
     Geofire.queryAtLocation(
             userCurrentPosition!.latitude, userCurrentPosition!.longitude, 10)!
         .listen((map) {
+      // ignore: avoid_print
       print(map);
       if (map != null) {
         var callBack = map['callBack'];
@@ -1027,6 +1030,7 @@ class _MainScreenState extends State<MainScreen> {
       markersSet.clear();
       circlesSet.clear();
 
+      // ignore: prefer_collection_literals
       Set<Marker> driversMarkerSet = Set<Marker>();
 
       for (ActiveNearbyAvailableDrivers eachDriver
@@ -1035,7 +1039,7 @@ class _MainScreenState extends State<MainScreen> {
             LatLng(eachDriver.locationLatitude!, eachDriver.locationLongitude!);
 
         Marker marker = Marker(
-          markerId: MarkerId("driver" + eachDriver.driverId!),
+          markerId: MarkerId("driver${eachDriver.driverId!}"),
           position: eachDriverActivePosition,
           icon: activeNearbyIcon!,
           rotation: 360,

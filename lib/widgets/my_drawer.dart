@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:swifttra/global/global.dart';
-import 'package:swifttra/main.dart';
 import 'package:swifttra/mainScreens/about_screen.dart';
 import 'package:swifttra/mainScreens/payment_screen.dart';
 import 'package:swifttra/mainScreens/profile_screen.dart';
 import 'package:swifttra/mainScreens/trips_history_screen.dart';
 import 'package:swifttra/splashScreen/splash_screen.dart';
 
+// ignore: must_be_immutable
 class MyDrawer extends StatefulWidget {
   String? name;
   String? email;
 
-  MyDrawer({this.name, this.email});
+  MyDrawer({Key? key, this.name, this.email}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _MyDrawerState createState() => _MyDrawerState();
 }
 
@@ -75,8 +76,10 @@ class _MyDrawerState extends State<MyDrawer> {
           //drawer body
           GestureDetector(
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (c) => TripsHistoryScreen()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (c) => const TripsHistoryScreen()));
             },
             child: const ListTile(
               leading: Icon(
@@ -92,8 +95,8 @@ class _MyDrawerState extends State<MyDrawer> {
 
           GestureDetector(
             onTap: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (c) => ProfileScreen()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (c) => const ProfileScreen()));
             },
             child: const ListTile(
               leading: Icon(
@@ -109,8 +112,8 @@ class _MyDrawerState extends State<MyDrawer> {
 
           GestureDetector(
             onTap: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (c) => PaymentScreen()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (c) => const PaymentScreen()));
             },
             child: const ListTile(
               leading: Icon(
@@ -126,8 +129,8 @@ class _MyDrawerState extends State<MyDrawer> {
 
           GestureDetector(
             onTap: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (c) => ProfileScreen()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (c) => const ProfileScreen()));
             },
             child: const ListTile(
               leading: Icon(
@@ -143,8 +146,8 @@ class _MyDrawerState extends State<MyDrawer> {
 
           GestureDetector(
             onTap: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (c) => AboutScreen()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (c) => const AboutScreen()));
             },
             child: const ListTile(
               leading: Icon(

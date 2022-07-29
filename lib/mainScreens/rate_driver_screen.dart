@@ -5,10 +5,11 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:smooth_star_rating_null_safety/smooth_star_rating_null_safety.dart';
 import 'package:swifttra/global/global.dart';
 
+// ignore: must_be_immutable
 class RateDriverScreen extends StatefulWidget {
   String? assignedDriverId;
 
-  RateDriverScreen({this.assignedDriverId});
+  RateDriverScreen({Key? key, this.assignedDriverId}) : super(key: key);
 
   @override
   State<RateDriverScreen> createState() => _RateDriverScreenState();
@@ -135,7 +136,7 @@ class _RateDriverScreenState extends State<RateDriverScreen> {
                   },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.green,
-                    padding: EdgeInsets.symmetric(horizontal: 74),
+                    padding: const EdgeInsets.symmetric(horizontal: 74),
                   ),
                   child: const Text(
                     "Submit",

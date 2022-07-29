@@ -1,7 +1,8 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:firebase_database/firebase_database.dart';
 
-class TripsHistoryModel
-{
+class TripsHistoryModel {
   String? time;
   String? originAddress;
   String? destinationAddress;
@@ -19,8 +20,7 @@ class TripsHistoryModel
     this.driverName,
   });
 
-  TripsHistoryModel.fromSnapshot(DataSnapshot dataSnapshot)
-  {
+  TripsHistoryModel.fromSnapshot(DataSnapshot dataSnapshot) {
     time = (dataSnapshot.value as Map)["time"];
     originAddress = (dataSnapshot.value as Map)["originAddress"];
     destinationAddress = (dataSnapshot.value as Map)["destinationAddress"];

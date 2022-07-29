@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+// ignore: unused_import
 import 'package:flutter/services.dart';
 import 'package:swifttra/global/global.dart';
 import 'package:swifttra/mainScreens/main_screen.dart';
 import 'package:swifttra/widgets/info_design_ui.dart';
 
 class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({Key? key}) : super(key: key);
+
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
@@ -14,8 +17,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("My Profile"),
-        backgroundColor: Color.fromARGB(255, 255, 136, 0).withOpacity(1.0),
+        title: const Text("My Profile"),
+        backgroundColor:
+            const Color.fromARGB(255, 255, 136, 0).withOpacity(1.0),
       ),
       body: SafeArea(
         child: Stack(
@@ -26,9 +30,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             Container(
               width: double.infinity,
-              color: Color.fromARGB(141, 0, 3, 2),
-              margin: EdgeInsets.all(20),
-              padding: EdgeInsets.all(0),
+              color: const Color.fromARGB(141, 0, 3, 2),
+              margin: const EdgeInsets.all(20),
+              padding: const EdgeInsets.all(0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -74,11 +78,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (c) => MainScreen()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (c) => const MainScreen()));
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: Color.fromARGB(255, 255, 136, 0),
+                      primary: const Color.fromARGB(255, 255, 136, 0),
                     ),
                     child: const Text(
                       "Close",

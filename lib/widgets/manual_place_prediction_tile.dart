@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:swifttra/assistants/request_assistant.dart';
-import 'package:swifttra/global/global.dart';
 import 'package:swifttra/global/map_key.dart';
 import 'package:swifttra/infoHandler/app_info.dart';
 import 'package:swifttra/models/directions.dart';
@@ -24,7 +23,7 @@ class _PlacePredictionTileDesignState extends State<PlacePredictionTileDesign> {
     showDialog(
       context: context,
       builder: (BuildContext context) => ProgressDialog(
-        message: "Setting Up Drop-Off, Please wait...",
+        message: "Setting Up Your Picl-Up Location, Please wait...",
       ),
     );
 
@@ -50,11 +49,7 @@ class _PlacePredictionTileDesignState extends State<PlacePredictionTileDesign> {
           responseApi["result"]["geometry"]["location"]["lng"];
 
       Provider.of<AppInfo>(context, listen: false)
-          .updateDropOffLocationAddress(directions);
-
-      setState(() {
-        userDropOffAddress = directions.locationName!;
-      });
+          .updateManualPickUpLocationAddress(directions);
 
       Navigator.pop(context, "obtainedDropoff");
     }

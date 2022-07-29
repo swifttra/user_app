@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:swifttra/assistants/assistant_methods.dart';
@@ -19,13 +21,13 @@ class _MySplashScreenState extends State<MySplashScreen> {
         : null;
 
     Timer(const Duration(seconds: 3), () async {
-      if (await fAuth.currentUser != null) {
+      if (fAuth.currentUser != null) {
         currentFirebaseUser = fAuth.currentUser;
         Navigator.push(
-            context, MaterialPageRoute(builder: (c) => MainScreen()));
+            context, MaterialPageRoute(builder: (c) => const MainScreen()));
       } else {
         Navigator.push(
-            context, MaterialPageRoute(builder: (c) => LoginScreen()));
+            context, MaterialPageRoute(builder: (c) => const LoginScreen()));
       }
     });
   }
@@ -41,7 +43,7 @@ class _MySplashScreenState extends State<MySplashScreen> {
   Widget build(BuildContext context) {
     return Material(
       child: Container(
-        color: Color.fromARGB(255, 255, 136, 0),
+        color: const Color.fromARGB(255, 255, 136, 0),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

@@ -6,12 +6,15 @@ import 'package:smooth_star_rating_null_safety/smooth_star_rating_null_safety.da
 import 'package:swifttra/assistants/assistant_methods.dart';
 import 'package:swifttra/global/global.dart';
 
+// ignore: must_be_immutable
 class SelectNearestActiveDriversScreen extends StatefulWidget {
   DatabaseReference? referenceRideRequest;
 
-  SelectNearestActiveDriversScreen({this.referenceRideRequest});
+  SelectNearestActiveDriversScreen({Key? key, this.referenceRideRequest})
+      : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _SelectNearestActiveDriversScreenState createState() =>
       _SelectNearestActiveDriversScreenState();
 }
@@ -92,9 +95,7 @@ class _SelectNearestActiveDriversScreenState
                 leading: Padding(
                   padding: const EdgeInsets.only(top: 2.0),
                   child: Image.asset(
-                    "images/" +
-                        dList[index]["car_details"]["type"].toString() +
-                        ".png",
+                    "images/${dList[index]["car_details"]["type"]}.png",
                     width: 70,
                   ),
                 ),
@@ -131,7 +132,8 @@ class _SelectNearestActiveDriversScreenState
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "\₦" + getFareAmountAccordingToVehicleType(index),
+                      // ignore: prefer_interpolation_to_compose_strings
+                      "₦" + getFareAmountAccordingToVehicleType(index),
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                       ),

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
+// ignore: must_be_immutable
 class PayFareAmountDialog extends StatefulWidget {
   double? fareAmount;
 
-  PayFareAmountDialog({this.fareAmount});
+  PayFareAmountDialog({Key? key, this.fareAmount}) : super(key: key);
 
   @override
   State<PayFareAmountDialog> createState() => _PayFareAmountDialogState();
@@ -96,7 +96,7 @@ class _PayFareAmountDialogState extends State<PayFareAmountDialog> {
                       ),
                     ),
                     Text(
-                      "\₦  " + widget.fareAmount!.toString(),
+                      "₦  ${widget.fareAmount!}",
                       style: const TextStyle(
                         fontSize: 20,
                         color: Colors.orange,

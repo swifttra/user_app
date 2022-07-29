@@ -1,7 +1,11 @@
-class DirectionDetailsInfo
-{
+// ignore_for_file: non_constant_identifier_names, duplicate_ignore
+
+class DirectionDetailsInfo {
+  // ignore: non_constant_identifier_names
   int? distance_value;
+  // ignore: non_constant_identifier_names
   int? duration_value;
+  // ignore: non_constant_identifier_names
   String? e_points;
   String? distance_text;
   String? duration_text;

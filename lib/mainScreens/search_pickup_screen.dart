@@ -4,15 +4,15 @@ import 'package:swifttra/global/map_key.dart';
 import 'package:swifttra/models/predicted_places.dart';
 import 'package:swifttra/widgets/place_prediction_tile.dart';
 
-class SearchPlacesScreen extends StatefulWidget {
-  const SearchPlacesScreen({Key? key}) : super(key: key);
+class SearchPickupScreen extends StatefulWidget {
+  const SearchPickupScreen({Key? key}) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
-  _SearchPlacesScreenState createState() => _SearchPlacesScreenState();
+  _SearchPickupScreenState createState() => _SearchPickupScreenState();
 }
 
-class _SearchPlacesScreenState extends State<SearchPlacesScreen> {
+class _SearchPickupScreenState extends State<SearchPickupScreen> {
   List<PredictedPlaces> placesPredictedList = [];
 
   void findPlaceAutoCompleteSearch(String inputText) async {
@@ -84,7 +84,7 @@ class _SearchPlacesScreenState extends State<SearchPlacesScreen> {
                       ),
                       const Center(
                         child: Text(
-                          "Search & Set DropOff Location",
+                          "Search & Set Pickup Location",
                           style: TextStyle(
                             fontSize: 18.0,
                             color: Colors.white,

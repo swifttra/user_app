@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:swifttra/models/trips_history_model.dart';
@@ -5,7 +7,7 @@ import 'package:swifttra/models/trips_history_model.dart';
 class HistoryDesignUIWidget extends StatefulWidget {
   TripsHistoryModel? tripsHistoryModel;
 
-  HistoryDesignUIWidget({this.tripsHistoryModel});
+  HistoryDesignUIWidget({Key? key, this.tripsHistoryModel}) : super(key: key);
 
   @override
   State<HistoryDesignUIWidget> createState() => _HistoryDesignUIWidgetState();
@@ -38,7 +40,7 @@ class _HistoryDesignUIWidgetState extends State<HistoryDesignUIWidget> {
                 Padding(
                   padding: const EdgeInsets.only(left: 6.0),
                   child: Text(
-                    "Driver : " + widget.tripsHistoryModel!.driverName!,
+                    "Driver : ${widget.tripsHistoryModel!.driverName!}",
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -49,7 +51,7 @@ class _HistoryDesignUIWidgetState extends State<HistoryDesignUIWidget> {
                   width: 12,
                 ),
                 Text(
-                  "\₦ " + widget.tripsHistoryModel!.fareAmount!,
+                  "₦ ${widget.tripsHistoryModel!.fareAmount!}",
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -100,13 +102,11 @@ class _HistoryDesignUIWidgetState extends State<HistoryDesignUIWidget> {
                   width: 12,
                 ),
                 Expanded(
-                  child: Container(
-                    child: Text(
-                      widget.tripsHistoryModel!.originAddress!,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        fontSize: 16,
-                      ),
+                  child: Text(
+                    widget.tripsHistoryModel!.originAddress!,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontSize: 16,
                     ),
                   ),
                 ),
@@ -129,13 +129,11 @@ class _HistoryDesignUIWidgetState extends State<HistoryDesignUIWidget> {
                   width: 12,
                 ),
                 Expanded(
-                  child: Container(
-                    child: Text(
-                      widget.tripsHistoryModel!.destinationAddress!,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        fontSize: 16,
-                      ),
+                  child: Text(
+                    widget.tripsHistoryModel!.destinationAddress!,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontSize: 16,
                     ),
                   ),
                 ),

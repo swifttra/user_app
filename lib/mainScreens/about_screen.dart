@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:swifttra/mainScreens/main_screen.dart';
 
 class AboutScreen extends StatefulWidget {
+  const AboutScreen({Key? key}) : super(key: key);
+
   @override
   State<AboutScreen> createState() => _AboutScreenState();
 }
@@ -15,7 +16,7 @@ class _AboutScreenState extends State<AboutScreen> {
       body: ListView(
         children: [
           //image
-          Container(
+          SizedBox(
             height: 230,
             child: Center(
               child: Image.asset(
@@ -65,11 +66,11 @@ class _AboutScreenState extends State<AboutScreen> {
               //close
               ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (c) => MainScreen()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (c) => const MainScreen()));
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Color.fromARGB(255, 255, 136, 0),
+                  primary: const Color.fromARGB(255, 255, 136, 0),
                 ),
                 child: const Text(
                   "Close",
