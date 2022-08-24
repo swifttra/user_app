@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:smooth_star_rating_null_safety/smooth_star_rating_null_safety.dart';
-import 'package:swifttra/assistants/assistant_methods.dart';
-import 'package:swifttra/global/global.dart';
+import '../assistants/assistant_methods.dart';
+import '../global/global.dart';
 
 // ignore: must_be_immutable
 class SelectNearestActiveDriversScreen extends StatefulWidget {
@@ -56,9 +56,9 @@ class _SelectNearestActiveDriversScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.orangeAccent,
+      backgroundColor: Colors.black,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.white54,
         title: const Text(
           "Nearest Online Drivers",
           style: TextStyle(
@@ -87,7 +87,7 @@ class _SelectNearestActiveDriversScreenState
               Navigator.pop(context, "driverChoosed");
             },
             child: Card(
-              color: Colors.white,
+              color: Colors.grey,
               elevation: 3,
               shadowColor: Colors.green,
               margin: const EdgeInsets.all(8),
@@ -95,7 +95,9 @@ class _SelectNearestActiveDriversScreenState
                 leading: Padding(
                   padding: const EdgeInsets.only(top: 2.0),
                   child: Image.asset(
-                    "images/${dList[index]["car_details"]["type"]}.png",
+                    "images/" +
+                        dList[index]["car_details"]["type"].toString() +
+                        ".png",
                     width: 70,
                   ),
                 ),
@@ -106,22 +108,22 @@ class _SelectNearestActiveDriversScreenState
                       dList[index]["name"],
                       style: const TextStyle(
                         fontSize: 14,
-                        color: Colors.white,
+                        color: Colors.black54,
                       ),
                     ),
                     Text(
                       dList[index]["car_details"]["car_model"],
                       style: const TextStyle(
                         fontSize: 12,
-                        color: Colors.white,
+                        color: Colors.white54,
                       ),
                     ),
                     SmoothStarRating(
                       rating: dList[index]["ratings"] == null
                           ? 0.0
                           : double.parse(dList[index]["ratings"]),
-                      color: Colors.white,
-                      borderColor: Colors.orangeAccent,
+                      color: Colors.black,
+                      borderColor: Colors.black,
                       allowHalfRating: true,
                       starCount: 5,
                       size: 15,
@@ -132,8 +134,7 @@ class _SelectNearestActiveDriversScreenState
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      // ignore: prefer_interpolation_to_compose_strings
-                      "₦" + getFareAmountAccordingToVehicleType(index),
+                      "\$ " + getFareAmountAccordingToVehicleType(index),
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
@@ -147,7 +148,7 @@ class _SelectNearestActiveDriversScreenState
                           : "",
                       style: const TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                          color: Colors.black54,
                           fontSize: 12),
                     ),
                     const SizedBox(
@@ -159,7 +160,7 @@ class _SelectNearestActiveDriversScreenState
                           : "",
                       style: const TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                          color: Colors.black54,
                           fontSize: 12),
                     ),
                   ],

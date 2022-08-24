@@ -48,9 +48,9 @@ dependencies:
   smooth_star_rating_null_safety: 1.0.4+2
   animated_text_kit: ^4.2.2
   intl: ^0.17.0
-  webview_flutter: ^3.0.4
   image_picker: ^0.8.5+3
   firebase_storage: ^10.3.4
+  flutter_launcher_icons: ^0.10.0
 
 
 dev_dependencies:
@@ -74,6 +74,7 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  
 
   # To add assets to your application, add an assets section, like this:
   assets:

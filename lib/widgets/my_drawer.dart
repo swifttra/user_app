@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:swifttra/global/global.dart';
 import 'package:swifttra/mainScreens/about_screen.dart';
+import 'package:swifttra/mainScreens/main_screen.dart';
 import 'package:swifttra/mainScreens/payment_screen.dart';
 import 'package:swifttra/mainScreens/profile_screen.dart';
 import 'package:swifttra/mainScreens/trips_history_screen.dart';
@@ -112,8 +113,8 @@ class _MyDrawerState extends State<MyDrawer> {
 
           GestureDetector(
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (c) => const PaymentScreen()));
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (c) => MainScreen()));
             },
             child: const ListTile(
               leading: Icon(

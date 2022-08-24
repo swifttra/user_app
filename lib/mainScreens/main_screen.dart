@@ -518,7 +518,6 @@ class _MainScreenState extends State<MainScreen> {
             ),
           ),
 
-          //ui for searching location
           Positioned(
             bottom: 0,
             left: 0,
@@ -545,7 +544,7 @@ class _MainScreenState extends State<MainScreen> {
                         children: [
                           const Icon(
                             Icons.add_location_alt_outlined,
-                            color: Colors.grey,
+                            color: Color.fromARGB(255, 255, 136, 0),
                           ),
                           const SizedBox(
                             width: 12.0,
@@ -555,8 +554,9 @@ class _MainScreenState extends State<MainScreen> {
                             children: [
                               const Text(
                                 "From",
-                                style:
-                                    TextStyle(color: Colors.grey, fontSize: 12),
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 255, 136, 0),
+                                    fontSize: 12),
                               ),
                               Text(
                                 Provider.of<AppInfo>(context)
@@ -565,7 +565,8 @@ class _MainScreenState extends State<MainScreen> {
                                     ? "${(Provider.of<AppInfo>(context).userPickUpLocation!.locationName!).substring(0, 24)}..."
                                     : "not getting address",
                                 style: const TextStyle(
-                                    color: Colors.grey, fontSize: 14),
+                                    color: Color.fromARGB(255, 255, 136, 0),
+                                    fontSize: 14),
                               ),
                             ],
                           ),
@@ -577,7 +578,7 @@ class _MainScreenState extends State<MainScreen> {
                       const Divider(
                         height: 1,
                         thickness: 1,
-                        color: Color.fromARGB(255, 255, 136, 0),
+                        color: Colors.white,
                       ),
 
                       const SizedBox(height: 16.0),
