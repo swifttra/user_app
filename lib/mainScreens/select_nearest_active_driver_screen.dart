@@ -3,18 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:smooth_star_rating_null_safety/smooth_star_rating_null_safety.dart';
-import '../assistants/assistant_methods.dart';
-import '../global/global.dart';
+import 'package:swifttra/assistants/assistant_methods.dart';
+import 'package:swifttra/global/global.dart';
 
-// ignore: must_be_immutable
 class SelectNearestActiveDriversScreen extends StatefulWidget {
   DatabaseReference? referenceRideRequest;
 
-  SelectNearestActiveDriversScreen({Key? key, this.referenceRideRequest})
-      : super(key: key);
+  SelectNearestActiveDriversScreen({this.referenceRideRequest});
 
   @override
-  // ignore: library_private_types_in_public_api
   _SelectNearestActiveDriversScreenState createState() =>
       _SelectNearestActiveDriversScreenState();
 }

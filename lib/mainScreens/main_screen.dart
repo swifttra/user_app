@@ -1,5 +1,3 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'dart:async';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -24,10 +22,7 @@ import 'package:swifttra/widgets/pay_fare_amount_dialog.dart';
 import 'package:swifttra/widgets/progress_dialog.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key}) : super(key: key);
-
   @override
-  // ignore: library_private_types_in_public_api
   _MainScreenState createState() => _MainScreenState();
 }
 
@@ -36,7 +31,7 @@ class _MainScreenState extends State<MainScreen> {
   GoogleMapController? newGoogleMapController;
 
   static const CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
+    target: LatLng(37.422131, -122.084801),
     zoom: 14.4746,
   );
 
@@ -99,8 +94,7 @@ class _MainScreenState extends State<MainScreen> {
     String humanReadableAddress =
         await AssistantMethods.searchAddressForGeographicCoOrdinates(
             userCurrentPosition!, context);
-    // ignore: avoid_print
-    print("this is your address = $humanReadableAddress");
+    print("this is your address = " + humanReadableAddress);
 
     userName = userModelCurrentInfo!.name!;
     userEmail = userModelCurrentInfo!.email!;
@@ -269,8 +263,8 @@ class _MainScreenState extends State<MainScreen> {
       }
 
       setState(() {
-        driverRideStatus =
-            "Driver is Coming :: ${directionDetailsInfo.duration_text}";
+        driverRideStatus = "Driver is Coming :: " +
+            directionDetailsInfo.duration_text.toString();
       });
 
       requestPositionInfo = true;
@@ -299,8 +293,8 @@ class _MainScreenState extends State<MainScreen> {
       }
 
       setState(() {
-        driverRideStatus =
-            "Going towards Destination :: ${directionDetailsInfo.duration_text}";
+        driverRideStatus = "Going towards Destination :: " +
+            directionDetailsInfo.duration_text.toString();
       });
 
       requestPositionInfo = true;
@@ -309,7 +303,7 @@ class _MainScreenState extends State<MainScreen> {
 
   searchNearestOnlineDrivers() async {
     //no active driver available
-    if (onlineNearByAvailableDriversList.isEmpty) {
+    if (onlineNearByAvailableDriversList.length == 0) {
       //cancel/delete the RideRequest Information
       referenceRideRequest!.remove();
 
@@ -321,7 +315,8 @@ class _MainScreenState extends State<MainScreen> {
       });
 
       Fluttertoast.showToast(
-          msg: "No Online Nearest Driver Available, Try again later.");
+          msg:
+              "No Online Nearest Driver Available. Search Again after some time, Restarting App Now.");
 
       Future.delayed(const Duration(milliseconds: 4000), () {
         SystemNavigator.pop();
@@ -459,11 +454,11 @@ class _MainScreenState extends State<MainScreen> {
 
     return Scaffold(
       key: sKey,
-      drawer: SizedBox(
+      drawer: Container(
         width: 265,
         child: Theme(
           data: Theme.of(context).copyWith(
-            canvasColor: Colors.white,
+            canvasColor: Colors.black,
           ),
           child: MyDrawer(
             name: userName,
@@ -488,7 +483,7 @@ class _MainScreenState extends State<MainScreen> {
               newGoogleMapController = controller;
 
               setState(() {
-                bottomPaddingOfMap = 240;
+                bottomPaddingOfMap = 320;
               });
 
               locateUserPosition();
@@ -509,15 +504,16 @@ class _MainScreenState extends State<MainScreen> {
                 }
               },
               child: CircleAvatar(
-                backgroundColor: Colors.white,
+                backgroundColor: Colors.grey,
                 child: Icon(
                   openNavigationDrawer ? Icons.menu : Icons.close,
-                  color: Colors.orange,
+                  color: Colors.black54,
                 ),
               ),
             ),
           ),
 
+          //ui for searching location
           Positioned(
             bottom: 0,
             left: 0,
@@ -526,24 +522,24 @@ class _MainScreenState extends State<MainScreen> {
               curve: Curves.easeIn,
               duration: const Duration(milliseconds: 120),
               child: Container(
-                height: searchLocationContainerHeight,
+                height: 320,
                 decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(20),
-                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(30),
+                    topLeft: Radius.circular(30),
                   ),
                 ),
                 child: Padding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 24, vertical: 18),
+                      const EdgeInsets.symmetric(horizontal: 40, vertical: 60),
                   child: Column(
                     children: [
                       //from
                       Row(
                         children: [
                           const Icon(
-                            Icons.add_location_alt_outlined,
+                            Icons.location_on,
                             color: Color.fromARGB(255, 255, 136, 0),
                           ),
                           const SizedBox(
@@ -553,20 +549,24 @@ class _MainScreenState extends State<MainScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               const Text(
-                                "From",
+                                "Start",
                                 style: TextStyle(
-                                    color: Color.fromARGB(255, 255, 136, 0),
-                                    fontSize: 12),
+                                    color: Colors.black,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold),
                               ),
                               Text(
                                 Provider.of<AppInfo>(context)
                                             .userPickUpLocation !=
                                         null
-                                    ? "${(Provider.of<AppInfo>(context).userPickUpLocation!.locationName!).substring(0, 24)}..."
+                                    ? (Provider.of<AppInfo>(context)
+                                                .userPickUpLocation!
+                                                .locationName!)
+                                            .substring(0, 24) +
+                                        "..."
                                     : "not getting address",
                                 style: const TextStyle(
-                                    color: Color.fromARGB(255, 255, 136, 0),
-                                    fontSize: 14),
+                                    color: Colors.grey, fontSize: 16),
                               ),
                             ],
                           ),
@@ -578,7 +578,7 @@ class _MainScreenState extends State<MainScreen> {
                       const Divider(
                         height: 1,
                         thickness: 1,
-                        color: Colors.white,
+                        color: Colors.grey,
                       ),
 
                       const SizedBox(height: 16.0),
@@ -590,7 +590,7 @@ class _MainScreenState extends State<MainScreen> {
                           var responseFromSearchScreen = await Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (c) => const SearchPlacesScreen()));
+                                  builder: (c) => SearchPlacesScreen()));
 
                           if (responseFromSearchScreen == "obtainedDropoff") {
                             setState(() {
@@ -604,8 +604,9 @@ class _MainScreenState extends State<MainScreen> {
                         child: Row(
                           children: [
                             const Icon(
-                              Icons.add_location_alt_outlined,
+                              Icons.location_on,
                               color: Color.fromARGB(255, 255, 136, 0),
+                              size: 25,
                             ),
                             const SizedBox(
                               width: 12.0,
@@ -614,10 +615,12 @@ class _MainScreenState extends State<MainScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 const Text(
-                                  "To",
+                                  "Destination",
                                   style: TextStyle(
-                                      color: Color.fromARGB(255, 255, 136, 0),
-                                      fontSize: 12),
+                                    color: Colors.black,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                                 Text(
                                   Provider.of<AppInfo>(context)
@@ -626,10 +629,9 @@ class _MainScreenState extends State<MainScreen> {
                                       ? Provider.of<AppInfo>(context)
                                           .userDropOffLocation!
                                           .locationName!
-                                      : "Where to go?",
+                                      : "Select Your Destination",
                                   style: const TextStyle(
-                                      color: Color.fromARGB(255, 255, 136, 0),
-                                      fontSize: 14),
+                                      color: Colors.grey, fontSize: 16),
                                 ),
                               ],
                             ),
@@ -642,33 +644,54 @@ class _MainScreenState extends State<MainScreen> {
                       const Divider(
                         height: 1,
                         thickness: 1,
-                        color: Color.fromARGB(255, 255, 136, 0),
+                        color: Colors.grey,
                       ),
 
-                      const SizedBox(height: 16.0),
+                      const SizedBox(height: 40.0, width: 80.0),
 
-                      ElevatedButton(
-                        onPressed: () {
-                          if (Provider.of<AppInfo>(context, listen: false)
-                                  .userDropOffLocation !=
-                              null) {
-                            saveRideRequestInformation();
-                          } else {
-                            Fluttertoast.showToast(
-                                msg: "Please select destination location");
-                          }
-                        },
-                        style: ElevatedButton.styleFrom(
-                          primary: const Color.fromARGB(255, 255, 136, 0),
-                          textStyle: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        child: const Text(
-                          "Request a Ride",
-                          style: TextStyle(color: Colors.white),
-                        ),
+                      Container(
+                        decoration: const BoxDecoration(
+                            // boxShadow: [
+                            //   BoxShadow(
+                            //     color: Colors.grey,
+                            //     blurRadius: 8,
+                            //     spreadRadius: 5,
+                            //     offset: Offset(
+                            //       0.7,
+                            //       0.7,
+                            //     ),
+                            //   ),
+                            // ],
+                            ),
+                        width: 350,
+                        height: 50,
+                        child: ElevatedButton(
+                            child: const Text("Request Lift",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 17)),
+                            onPressed: () {
+                              if (Provider.of<AppInfo>(context, listen: false)
+                                      .userDropOffLocation !=
+                                  null) {
+                                saveRideRequestInformation();
+                              } else {
+                                Fluttertoast.showToast(
+                                    msg: "Please select destination location");
+                              }
+                            },
+                            style: ButtonStyle(
+                                foregroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                  Colors.white,
+                                ),
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        Colors.orangeAccent),
+                                shape: MaterialStateProperty.all<
+                                        RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(25.0),
+                                )))),
                       ),
                     ],
                   ),
@@ -685,7 +708,7 @@ class _MainScreenState extends State<MainScreen> {
             child: Container(
               height: waitingResponseFromDriverContainerHeight,
               decoration: const BoxDecoration(
-                color: Colors.white,
+                color: Colors.black87,
                 borderRadius: BorderRadius.only(
                   topRight: Radius.circular(20),
                   topLeft: Radius.circular(20),
@@ -729,7 +752,7 @@ class _MainScreenState extends State<MainScreen> {
             child: Container(
               height: assignedDriverInfoContainerHeight,
               decoration: const BoxDecoration(
-                color: Colors.white,
+                color: Colors.black87,
                 borderRadius: BorderRadius.only(
                   topRight: Radius.circular(20),
                   topLeft: Radius.circular(20),
@@ -748,9 +771,10 @@ class _MainScreenState extends State<MainScreen> {
                       child: Text(
                         driverRideStatus,
                         style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black),
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white54,
+                        ),
                       ),
                     ),
 
@@ -774,7 +798,7 @@ class _MainScreenState extends State<MainScreen> {
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         fontSize: 16,
-                        color: Colors.black,
+                        color: Colors.white54,
                       ),
                     ),
 
@@ -789,7 +813,7 @@ class _MainScreenState extends State<MainScreen> {
                       style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black,
+                        color: Colors.white54,
                       ),
                     ),
 
@@ -865,9 +889,7 @@ class _MainScreenState extends State<MainScreen> {
 
     Navigator.pop(context);
 
-    // ignore: avoid_print
     print("These are points = ");
-    // ignore: avoid_print
     print(directionDetailsInfo!.e_points);
 
     PolylinePoints pPoints = PolylinePoints();
@@ -877,17 +899,17 @@ class _MainScreenState extends State<MainScreen> {
     pLineCoOrdinatesList.clear();
 
     if (decodedPolyLinePointsResultList.isNotEmpty) {
-      for (var pointLatLng in decodedPolyLinePointsResultList) {
+      decodedPolyLinePointsResultList.forEach((PointLatLng pointLatLng) {
         pLineCoOrdinatesList
             .add(LatLng(pointLatLng.latitude, pointLatLng.longitude));
-      }
+      });
     }
 
     polyLineSet.clear();
 
     setState(() {
       Polyline polyline = Polyline(
-        color: Colors.orangeAccent,
+        color: Colors.purpleAccent,
         polylineId: const PolylineId("PolylineID"),
         jointType: JointType.round,
         points: pLineCoOrdinatesList,
@@ -973,7 +995,6 @@ class _MainScreenState extends State<MainScreen> {
     Geofire.queryAtLocation(
             userCurrentPosition!.latitude, userCurrentPosition!.longitude, 10)!
         .listen((map) {
-      // ignore: avoid_print
       print(map);
       if (map != null) {
         var callBack = map['callBack'];
@@ -1031,7 +1052,6 @@ class _MainScreenState extends State<MainScreen> {
       markersSet.clear();
       circlesSet.clear();
 
-      // ignore: prefer_collection_literals
       Set<Marker> driversMarkerSet = Set<Marker>();
 
       for (ActiveNearbyAvailableDrivers eachDriver
@@ -1040,7 +1060,7 @@ class _MainScreenState extends State<MainScreen> {
             LatLng(eachDriver.locationLatitude!, eachDriver.locationLongitude!);
 
         Marker marker = Marker(
-          markerId: MarkerId("driver${eachDriver.driverId!}"),
+          markerId: MarkerId("driver" + eachDriver.driverId!),
           position: eachDriverActivePosition,
           icon: activeNearbyIcon!,
           rotation: 360,
@@ -1058,7 +1078,7 @@ class _MainScreenState extends State<MainScreen> {
   createActiveNearByDriverIconMarker() {
     if (activeNearbyIcon == null) {
       ImageConfiguration imageConfiguration =
-          createLocalImageConfiguration(context, size: const Size(50, 50));
+          createLocalImageConfiguration(context, size: const Size(2, 2));
       BitmapDescriptor.fromAssetImage(imageConfiguration, "images/car.png")
           .then((value) {
         activeNearbyIcon = value;

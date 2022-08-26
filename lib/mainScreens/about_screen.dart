@@ -1,22 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:swifttra/mainScreens/main_screen.dart';
+import 'package:flutter/services.dart';
 
-class AboutScreen extends StatefulWidget {
-  const AboutScreen({Key? key}) : super(key: key);
 
+class AboutScreen extends StatefulWidget
+{
   @override
   State<AboutScreen> createState() => _AboutScreenState();
 }
 
-class _AboutScreenState extends State<AboutScreen> {
+
+
+
+class _AboutScreenState extends State<AboutScreen>
+{
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)
+  {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.black,
       body: ListView(
+
         children: [
+
           //image
-          SizedBox(
+           Container(
             height: 230,
             child: Center(
               child: Image.asset(
@@ -28,12 +35,13 @@ class _AboutScreenState extends State<AboutScreen> {
 
           Column(
             children: [
+
               //company name
               const Text(
-                "About Swifttra",
+                "Uber & inDriver Clone",
                 style: TextStyle(
-                  fontSize: 30,
-                  color: Color.fromARGB(255, 255, 136, 0),
+                  fontSize: 28,
+                  color: Colors.white54,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -44,18 +52,28 @@ class _AboutScreenState extends State<AboutScreen> {
 
               //about you & your company - write some info
               const Text(
-                "SwiftTra Ltd is an indigenous company with global standards."
-                "SwiftTra is a high technology service for ride-hailing, booking easy rides"
-                "that enables you to get transport to any destination. SwiftTra operates a mobile app,"
-                "ride-hailing, vehicles for hire, food delivery, package delivery, school runs, couriers & haulage."
-                "The app works Worldwide. Request taxi ride service and enjoy your trip!"
-                "SwiftTra’s mission is to bring safe, fast, reliable, affordable and comfortable transportation to"
-                "millions of people around the world, while also helping thousands of drivers support their families."
-                "Our vision is to be world-class brand known for its innovation, efficiency and reliability in the market.",
+                "This app has been developed by Muhammad Ali, "
+                "This is the world number 1 ride sharing app. Available for all. "
+                "20M+ people already use this app.",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 16,
-                  color: Colors.black,
+                  color: Colors.white54,
+                ),
+              ),
+
+              const SizedBox(
+                height: 10,
+              ),
+
+              const Text(
+                "This app has been developed by Muhammad Ali, "
+                    "This is the world number 1 ride sharing app. Available for all. "
+                    "20M+ people already use this app.",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.white54,
                 ),
               ),
 
@@ -65,21 +83,24 @@ class _AboutScreenState extends State<AboutScreen> {
 
               //close
               ElevatedButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (c) => const MainScreen()));
+                onPressed: ()
+                {
+                  SystemNavigator.pop();
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: const Color.fromARGB(255, 255, 136, 0),
+                  primary: Colors.white54,
                 ),
                 child: const Text(
                   "Close",
                   style: TextStyle(color: Colors.white),
                 ),
               ),
+
             ],
           ),
+
         ],
+
       ),
     );
   }

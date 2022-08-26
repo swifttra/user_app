@@ -16,6 +16,7 @@ void main() async {
           title: 'Swifttra Driver',
           theme: ThemeData(
             primarySwatch: Colors.blue,
+            fontFamily: 'Oxygen',
           ),
           home: const MySplashScreen(),
           debugShowCheckedModeBanner: false,

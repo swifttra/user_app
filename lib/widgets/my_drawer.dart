@@ -1,21 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:swifttra/global/global.dart';
-import 'package:swifttra/mainScreens/about_screen.dart';
-import 'package:swifttra/mainScreens/main_screen.dart';
-import 'package:swifttra/mainScreens/payment_screen.dart';
-import 'package:swifttra/mainScreens/profile_screen.dart';
 import 'package:swifttra/mainScreens/trips_history_screen.dart';
 import 'package:swifttra/splashScreen/splash_screen.dart';
 
-// ignore: must_be_immutable
 class MyDrawer extends StatefulWidget {
   String? name;
   String? email;
 
-  MyDrawer({Key? key, this.name, this.email}) : super(key: key);
+  MyDrawer({this.name, this.email});
 
   @override
-  // ignore: library_private_types_in_public_api
   _MyDrawerState createState() => _MyDrawerState();
 }
 
@@ -28,16 +22,15 @@ class _MyDrawerState extends State<MyDrawer> {
           //drawer header
           Container(
             height: 165,
-            color: Colors.white,
+            color: Colors.grey,
             child: DrawerHeader(
-              decoration:
-                  const BoxDecoration(color: Color.fromARGB(255, 255, 136, 0)),
+              decoration: const BoxDecoration(color: Colors.black),
               child: Row(
                 children: [
                   const Icon(
                     Icons.person,
                     size: 80,
-                    color: Colors.white,
+                    color: Colors.grey,
                   ),
                   const SizedBox(
                     width: 16,
@@ -49,7 +42,7 @@ class _MyDrawerState extends State<MyDrawer> {
                         widget.name.toString(),
                         style: const TextStyle(
                           fontSize: 16,
-                          color: Colors.white,
+                          color: Colors.grey,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -60,7 +53,7 @@ class _MyDrawerState extends State<MyDrawer> {
                         widget.email.toString(),
                         style: const TextStyle(
                           fontSize: 12,
-                          color: Colors.white,
+                          color: Colors.grey,
                         ),
                       ),
                     ],
@@ -77,87 +70,45 @@ class _MyDrawerState extends State<MyDrawer> {
           //drawer body
           GestureDetector(
             onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (c) => const TripsHistoryScreen()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (c) => TripsHistoryScreen()));
             },
             child: const ListTile(
               leading: Icon(
                 Icons.history,
-                color: Colors.orange,
+                color: Colors.white54,
               ),
               title: Text(
                 "History",
-                style: TextStyle(color: Colors.orange),
+                style: TextStyle(color: Colors.white54),
               ),
             ),
           ),
 
           GestureDetector(
-            onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (c) => const ProfileScreen()));
-            },
+            onTap: () {},
             child: const ListTile(
               leading: Icon(
                 Icons.person,
-                color: Colors.orange,
+                color: Colors.white54,
               ),
               title: Text(
                 "Visit Profile",
-                style: TextStyle(color: Colors.orange),
+                style: TextStyle(color: Colors.white54),
               ),
             ),
           ),
 
           GestureDetector(
-            onTap: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (c) => MainScreen()));
-            },
-            child: const ListTile(
-              leading: Icon(
-                Icons.credit_card_rounded,
-                color: Colors.orange,
-              ),
-              title: Text(
-                "Payments",
-                style: TextStyle(color: Colors.orange),
-              ),
-            ),
-          ),
-
-          GestureDetector(
-            onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (c) => const ProfileScreen()));
-            },
-            child: const ListTile(
-              leading: Icon(
-                Icons.volume_up_rounded,
-                color: Colors.orange,
-              ),
-              title: Text(
-                "Promotions",
-                style: TextStyle(color: Colors.orange),
-              ),
-            ),
-          ),
-
-          GestureDetector(
-            onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (c) => const AboutScreen()));
-            },
+            onTap: () {},
             child: const ListTile(
               leading: Icon(
                 Icons.info,
-                color: Colors.orange,
+                color: Colors.white54,
               ),
               title: Text(
                 "About",
-                style: TextStyle(color: Colors.orange),
+                style: TextStyle(color: Colors.white54),
               ),
             ),
           ),
@@ -171,11 +122,11 @@ class _MyDrawerState extends State<MyDrawer> {
             child: const ListTile(
               leading: Icon(
                 Icons.logout,
-                color: Colors.orange,
+                color: Colors.white54,
               ),
               title: Text(
                 "Sign Out",
-                style: TextStyle(color: Colors.orange),
+                style: TextStyle(color: Colors.white54),
               ),
             ),
           ),
