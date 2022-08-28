@@ -20,7 +20,7 @@ class _MySplashScreenState extends State<MySplashScreen> {
         ? AssistantMethods.readCurrentOnlineUserInfo()
         : null;
 
-    Timer(const Duration(seconds: 3), () async {
+    Timer(const Duration(seconds: 6), () async {
       if (fAuth.currentUser != null) {
         currentFirebaseUser = fAuth.currentUser;
         Navigator.push(
@@ -43,21 +43,14 @@ class _MySplashScreenState extends State<MySplashScreen> {
   Widget build(BuildContext context) {
     return Material(
       child: Container(
-        color: const Color.fromARGB(255, 255, 136, 0),
+        color: Colors.white,
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset("images/logo.png"),
-              const SizedBox(
-                height: 10,
-              ),
-              const Text(
-                "Swifttra",
-                style: TextStyle(
-                    fontSize: 24,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
+              Padding(
+                padding: const EdgeInsets.all(40.0),
+                child: Image.asset("images/logo.png"),
               ),
             ],
           ),

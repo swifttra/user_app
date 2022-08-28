@@ -12,18 +12,28 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            // image
+            Container(
+                width: 200,
+                height: 200,
+                child: Image.asset("images/logo.png"),
+                alignment: Alignment.topCenter),
+
             //name
-            Text(
-              userModelCurrentInfo!.name!,
-              style: const TextStyle(
-                fontSize: 50.0,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
+            Padding(
+              padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 4.0),
+              child: Text(
+                userModelCurrentInfo!.name!,
+                style: const TextStyle(
+                  fontSize: 50.0,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
 
@@ -31,7 +41,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               height: 20,
               width: 200,
               child: Divider(
-                color: Colors.white,
+                color: Colors.grey,
                 height: 2,
                 thickness: 2,
               ),
@@ -41,7 +51,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
               height: 38.0,
             ),
 
-            //phone
             InfoDesignUIWidget(
               textInfo: userModelCurrentInfo!.phone!,
               iconData: Icons.phone_iphone,
@@ -56,17 +65,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
             const SizedBox(
               height: 20,
             ),
+//Button
 
-            ElevatedButton(
-              onPressed: () {
-                SystemNavigator.pop();
-              },
-              style: ElevatedButton.styleFrom(
-                primary: Colors.white54,
-              ),
-              child: const Text(
-                "Close",
-                style: TextStyle(color: Colors.white),
+            Container(
+              width: 350,
+              height: 50,
+              child: ElevatedButton(
+                onPressed: () {
+                  SystemNavigator.pop();
+                },
+                style: ButtonStyle(
+                    foregroundColor: MaterialStateProperty.all<Color>(
+                      Colors.white,
+                    ),
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.orangeAccent),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25.0),
+                    ))),
+                child: const Text(
+                  "Close",
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
             )
           ],

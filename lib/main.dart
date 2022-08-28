@@ -8,6 +8,12 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
+  ErrorWidget.builder = (FlutterErrorDetails details) => Scaffold(
+        body: Center(
+            child: Text("Something went wrong.",
+                style: TextStyle(color: Colors.red))),
+      );
+
   runApp(
     MyApp(
       child: ChangeNotifierProvider(

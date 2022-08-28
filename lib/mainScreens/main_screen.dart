@@ -30,8 +30,8 @@ class _MainScreenState extends State<MainScreen> {
   final Completer<GoogleMapController> _controllerGoogleMap = Completer();
   GoogleMapController? newGoogleMapController;
 
-  static const CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(37.422131, -122.084801),
+  static final CameraPosition _kGooglePlex = CameraPosition(
+    target: LatLng(37.42796133580664, -122.085749655962),
     zoom: 14.4746,
   );
 
@@ -458,7 +458,7 @@ class _MainScreenState extends State<MainScreen> {
         width: 265,
         child: Theme(
           data: Theme.of(context).copyWith(
-            canvasColor: Colors.black,
+            canvasColor: Colors.white,
           ),
           child: MyDrawer(
             name: userName,
@@ -504,10 +504,10 @@ class _MainScreenState extends State<MainScreen> {
                 }
               },
               child: CircleAvatar(
-                backgroundColor: Colors.grey,
+                backgroundColor: Colors.white,
                 child: Icon(
                   openNavigationDrawer ? Icons.menu : Icons.close,
-                  color: Colors.black54,
+                  color: Colors.orangeAccent,
                 ),
               ),
             ),
@@ -532,7 +532,7 @@ class _MainScreenState extends State<MainScreen> {
                 ),
                 child: Padding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 40, vertical: 60),
+                      const EdgeInsets.symmetric(horizontal: 30, vertical: 60),
                   child: Column(
                     children: [
                       //from
@@ -564,7 +564,7 @@ class _MainScreenState extends State<MainScreen> {
                                                 .locationName!)
                                             .substring(0, 24) +
                                         "..."
-                                    : "not getting address",
+                                    : "Cannot Get Address",
                                 style: const TextStyle(
                                     color: Colors.grey, fontSize: 16),
                               ),
@@ -650,19 +650,6 @@ class _MainScreenState extends State<MainScreen> {
                       const SizedBox(height: 40.0, width: 80.0),
 
                       Container(
-                        decoration: const BoxDecoration(
-                            // boxShadow: [
-                            //   BoxShadow(
-                            //     color: Colors.grey,
-                            //     blurRadius: 8,
-                            //     spreadRadius: 5,
-                            //     offset: Offset(
-                            //       0.7,
-                            //       0.7,
-                            //     ),
-                            //   ),
-                            // ],
-                            ),
                         width: 350,
                         height: 50,
                         child: ElevatedButton(

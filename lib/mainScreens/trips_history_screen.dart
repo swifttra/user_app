@@ -13,15 +13,12 @@ class _TripsHistoryScreenState extends State<TripsHistoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.black,
-        title: const Text("Trips History"),
-        leading: IconButton(
-          icon: const Icon(Icons.close),
-          onPressed: () {
-            SystemNavigator.pop();
-          },
+        backgroundColor: Colors.orangeAccent,
+        title: const Text("Your Ride History"),
+        leading: BackButton(
+          onPressed: () => Navigator.pop(context, false),
         ),
       ),
       body: ListView.separated(
@@ -32,7 +29,7 @@ class _TripsHistoryScreenState extends State<TripsHistoryScreen> {
         ),
         itemBuilder: (context, i) {
           return Card(
-            color: Colors.white54,
+            color: Colors.grey,
             child: HistoryDesignUIWidget(
               tripsHistoryModel: Provider.of<AppInfo>(context, listen: false)
                   .allTripsHistoryInformationList[i],

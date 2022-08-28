@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:swifttra/global/global.dart';
+import 'package:swifttra/mainScreens/profile_screen.dart';
 import 'package:swifttra/mainScreens/trips_history_screen.dart';
 import 'package:swifttra/splashScreen/splash_screen.dart';
 
@@ -22,15 +23,24 @@ class _MyDrawerState extends State<MyDrawer> {
           //drawer header
           Container(
             height: 165,
-            color: Colors.grey,
+            color: Colors.white,
             child: DrawerHeader(
-              decoration: const BoxDecoration(color: Colors.black),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Color.fromARGB(255, 255, 191, 0),
+                    Color.fromARGB(255, 255, 140, 0),
+                  ],
+                  begin: Alignment.bottomLeft,
+                  end: Alignment.topRight,
+                ),
+              ),
               child: Row(
                 children: [
                   const Icon(
                     Icons.person,
                     size: 80,
-                    color: Colors.grey,
+                    color: Colors.white,
                   ),
                   const SizedBox(
                     width: 16,
@@ -42,7 +52,7 @@ class _MyDrawerState extends State<MyDrawer> {
                         widget.name.toString(),
                         style: const TextStyle(
                           fontSize: 16,
-                          color: Colors.grey,
+                          color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -53,7 +63,7 @@ class _MyDrawerState extends State<MyDrawer> {
                         widget.email.toString(),
                         style: const TextStyle(
                           fontSize: 12,
-                          color: Colors.grey,
+                          color: Colors.white,
                         ),
                       ),
                     ],
@@ -76,57 +86,154 @@ class _MyDrawerState extends State<MyDrawer> {
             child: const ListTile(
               leading: Icon(
                 Icons.history,
-                color: Colors.white54,
+                color: Colors.orangeAccent,
               ),
               title: Text(
-                "History",
-                style: TextStyle(color: Colors.white54),
+                "Ride History",
+                style: TextStyle(color: Colors.black),
               ),
             ),
           ),
+
+          const SizedBox(height: 10.0),
+
+          const Divider(
+            height: 1,
+            indent: 20, // empty space to the leading edge of divider.
+            endIndent: 20, // empty space to the trailing edge of the divider.
+            thickness: 0.2,
+            color: Colors.grey,
+          ),
+
+          const SizedBox(height: 16.0),
 
           GestureDetector(
             onTap: () {},
             child: const ListTile(
               leading: Icon(
-                Icons.person,
-                color: Colors.white54,
+                Icons.handshake,
+                color: Colors.orangeAccent,
               ),
               title: Text(
-                "Visit Profile",
-                style: TextStyle(color: Colors.white54),
+                "Promotions",
+                style: TextStyle(color: Colors.black),
               ),
             ),
           ),
 
+          const SizedBox(height: 10.0),
+
+          const Divider(
+            indent: 20, // empty space to the leading edge of divider.
+            endIndent: 20, // empty space to the trailing edge of the divider.
+            height: 1,
+            thickness: 0.2,
+            color: Colors.grey,
+          ),
+
+          const SizedBox(height: 16.0),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (c) => ProfileScreen()));
+            },
+            child: const ListTile(
+              leading: Icon(
+                Icons.person,
+                color: Colors.orangeAccent,
+              ),
+              title: Text(
+                "My Profile",
+                style: TextStyle(color: Colors.black),
+              ),
+            ),
+          ),
+
+          const SizedBox(height: 10.0),
+
+          const Divider(
+            height: 1,
+            thickness: 0.2,
+            indent: 20, // empty space to the leading edge of divider.
+            endIndent: 20, // empty space to the trailing edge of the divider.
+            color: Colors.grey,
+          ),
+
+          const SizedBox(height: 16.0),
+          GestureDetector(
+            onTap: () {},
+            child: const ListTile(
+              leading: Icon(
+                Icons.settings,
+                color: Colors.orangeAccent,
+              ),
+              title: Text(
+                "Settings",
+                style: TextStyle(color: Colors.black),
+              ),
+            ),
+          ),
+
+          const SizedBox(height: 10.0),
+
+          const Divider(
+            height: 1,
+            thickness: 0.2,
+            color: Colors.grey,
+            indent: 20, // empty space to the leading edge of divider.
+            endIndent: 20, // empty space to the trailing edge of the divider.
+          ),
+
+          const SizedBox(height: 16.0),
           GestureDetector(
             onTap: () {},
             child: const ListTile(
               leading: Icon(
                 Icons.info,
-                color: Colors.white54,
+                color: Colors.orangeAccent,
               ),
               title: Text(
-                "About",
-                style: TextStyle(color: Colors.white54),
+                "About Swifttra",
+                style: TextStyle(color: Colors.black),
               ),
             ),
           ),
 
-          GestureDetector(
-            onTap: () {
-              fAuth.signOut();
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (c) => const MySplashScreen()));
-            },
-            child: const ListTile(
-              leading: Icon(
-                Icons.logout,
-                color: Colors.white54,
-              ),
-              title: Text(
+          const SizedBox(height: 10.0),
+
+          const Divider(
+            height: 1,
+            indent: 20, // empty space to the leading edge of divider.
+            endIndent: 20, // empty space to the trailing edge of the divider.
+            thickness: 0.2,
+            color: Colors.grey,
+          ),
+
+          const SizedBox(height: 257.0),
+          Container(
+            height: 40,
+            child: ElevatedButton(
+              onPressed: () {
+                fAuth.signOut();
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (c) => const MySplashScreen()));
+              },
+              style: ButtonStyle(
+                  foregroundColor: MaterialStateProperty.all<Color>(
+                    Colors.white,
+                  ),
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.orangeAccent),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                          // borderRadius: BorderRadius.circular(15.0),
+                          ))),
+              child: const Text(
                 "Sign Out",
-                style: TextStyle(color: Colors.white54),
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                ),
               ),
             ),
           ),

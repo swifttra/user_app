@@ -102,22 +102,20 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 20,
               ),
               Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(25.0),
-                  color: Colors.white,
-                ),
                 child: TextField(
                   controller: emailTextEditingController,
                   keyboardType: TextInputType.emailAddress,
                   style: const TextStyle(color: Colors.black),
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     labelText: "Email",
                     hintText: "Email",
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
+                      borderSide: BorderSide(color: Colors.grey),
+                      borderRadius: BorderRadius.circular(30.0),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
+                      borderSide: BorderSide(color: Colors.grey),
+                      borderRadius: BorderRadius.circular(30.0),
                     ),
                     hintStyle: TextStyle(
                       color: Colors.black,
@@ -138,14 +136,16 @@ class _LoginScreenState extends State<LoginScreen> {
                 keyboardType: TextInputType.text,
                 obscureText: true,
                 style: const TextStyle(color: Colors.black),
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: "Password",
                   hintText: "Password",
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black),
+                    borderSide: BorderSide(color: Colors.grey),
+                    borderRadius: BorderRadius.circular(30.0),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black),
+                    borderSide: BorderSide(color: Colors.grey),
+                    borderRadius: BorderRadius.circular(30.0),
                   ),
                   hintStyle: TextStyle(
                     color: Colors.black,
@@ -160,25 +160,46 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(
                 height: 20,
               ),
-              ElevatedButton(
-                onPressed: () {
-                  validateForm();
-                },
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.white,
-                ),
-                child: const Text(
-                  "Login",
-                  style: TextStyle(
-                    color: Colors.orange,
-                    fontSize: 18,
+              Container(
+                width: 350,
+                height: 50,
+                child: ElevatedButton(
+                  onPressed: () {
+                    validateForm();
+                  },
+                  style: ButtonStyle(
+                      foregroundColor: MaterialStateProperty.all<Color>(
+                        Colors.white,
+                      ),
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.orangeAccent),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(25.0),
+                      ))),
+                  child: const Text(
+                    "Login",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                    ),
                   ),
                 ),
               ),
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                "OR",
+                style: TextStyle(color: Colors.grey),
+              ),
               TextButton(
                 child: const Text(
-                  "Do not have an Account? SignUp Here",
-                  style: TextStyle(color: Colors.white),
+                  "Don't have an account? Sign Up here ",
+                  style: TextStyle(
+                    color: Colors.black,
+                    decoration: TextDecoration.underline,
+                  ),
                 ),
                 onPressed: () {
                   Navigator.push(context,

@@ -17,6 +17,7 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController nameTextEditingController = TextEditingController();
+
   TextEditingController emailTextEditingController = TextEditingController();
   TextEditingController phoneTextEditingController = TextEditingController();
   TextEditingController passwordTextEditingController = TextEditingController();
@@ -83,118 +84,135 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 255, 136, 0),
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
               const SizedBox(
-                height: 10,
+                height: 0,
               ),
               Padding(
                 padding: const EdgeInsets.all(55.0),
                 child: Image.asset("images/logo.png"),
               ),
-              const SizedBox(
-                height: 10,
-              ),
               const Text(
-                "Register as a user",
+                "Sign In as a user",
                 style: TextStyle(
                   fontSize: 26,
-                  color: Colors.white,
+                  color: Colors.black,
                   fontWeight: FontWeight.bold,
                 ),
               ),
+              const SizedBox(
+                height: 20,
+              ),
               TextField(
                 controller: nameTextEditingController,
-                style: const TextStyle(color: Colors.white),
-                decoration: const InputDecoration(
-                  labelText: "Name",
-                  hintText: "Name",
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
+                style: const TextStyle(color: Colors.black),
+                decoration: InputDecoration(
+                  labelText: "First name",
+                  hintText: "First name",
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey),
+                    borderRadius: BorderRadius.circular(30.0),
                   ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey),
+                    borderRadius: BorderRadius.circular(30.0),
                   ),
                   hintStyle: TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
                     fontSize: 10,
                   ),
                   labelStyle: TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
                     fontSize: 14,
                   ),
                 ),
+              ),
+              const SizedBox(
+                height: 15,
               ),
               TextField(
                 controller: emailTextEditingController,
                 keyboardType: TextInputType.emailAddress,
-                style: const TextStyle(color: Colors.white),
-                decoration: const InputDecoration(
+                style: const TextStyle(color: Colors.black),
+                decoration: InputDecoration(
                   labelText: "Email",
                   hintText: "Email",
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey),
+                    borderRadius: BorderRadius.circular(30.0),
                   ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey),
+                    borderRadius: BorderRadius.circular(30.0),
                   ),
                   hintStyle: TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
                     fontSize: 10,
                   ),
                   labelStyle: TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
                     fontSize: 14,
                   ),
                 ),
               ),
+              const SizedBox(
+                height: 15,
+              ),
               TextField(
                 controller: phoneTextEditingController,
                 keyboardType: TextInputType.phone,
-                style: const TextStyle(color: Colors.white),
-                decoration: const InputDecoration(
+                style: const TextStyle(color: Colors.black),
+                decoration: InputDecoration(
                   labelText: "Phone",
                   hintText: "Phone",
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey),
+                    borderRadius: BorderRadius.circular(30.0),
                   ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey),
+                    borderRadius: BorderRadius.circular(30.0),
                   ),
                   hintStyle: TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
                     fontSize: 10,
                   ),
                   labelStyle: TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
                     fontSize: 14,
                   ),
                 ),
+              ),
+              const SizedBox(
+                height: 15,
               ),
               TextField(
                 controller: passwordTextEditingController,
                 keyboardType: TextInputType.text,
                 obscureText: true,
-                style: const TextStyle(color: Colors.white),
-                decoration: const InputDecoration(
+                style: const TextStyle(color: Colors.black),
+                decoration: InputDecoration(
                   labelText: "Password",
                   hintText: "Password",
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey),
+                    borderRadius: BorderRadius.circular(30.0),
                   ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey),
+                    borderRadius: BorderRadius.circular(30.0),
                   ),
                   hintStyle: TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
                     fontSize: 10,
                   ),
                   labelStyle: TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
                     fontSize: 14,
                   ),
                 ),
@@ -202,25 +220,46 @@ class _SignUpScreenState extends State<SignUpScreen> {
               const SizedBox(
                 height: 30,
               ),
-              ElevatedButton(
-                onPressed: () {
-                  validateForm();
-                },
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.white,
-                ),
-                child: const Text(
-                  "Create Account",
-                  style: TextStyle(
-                    color: Colors.orange,
-                    fontSize: 18,
+              Container(
+                width: 350,
+                height: 50,
+                child: ElevatedButton(
+                  onPressed: () {
+                    validateForm();
+                  },
+                  style: ButtonStyle(
+                      foregroundColor: MaterialStateProperty.all<Color>(
+                        Colors.white,
+                      ),
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.orangeAccent),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(25.0),
+                      ))),
+                  child: const Text(
+                    "Create Account",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                    ),
                   ),
                 ),
               ),
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                "OR",
+                style: TextStyle(color: Colors.grey),
+              ),
               TextButton(
                 child: const Text(
-                  "Already have an Account? Login Here",
-                  style: TextStyle(color: Colors.white),
+                  "Already have an Account? Sign IN Here",
+                  style: TextStyle(
+                    color: Colors.black,
+                    decoration: TextDecoration.underline,
+                  ),
                 ),
                 onPressed: () {
                   Navigator.push(context,
