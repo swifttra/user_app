@@ -1,6 +1,5 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:smooth_star_rating_null_safety/smooth_star_rating_null_safety.dart';
 import 'package:swifttra/assistants/assistant_methods.dart';
@@ -53,11 +52,11 @@ class _SelectNearestActiveDriversScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white54,
         title: const Text(
-          "Nearest Online Drivers",
+          "Nearest Drivers",
           style: TextStyle(
             fontSize: 18,
           ),
@@ -69,7 +68,7 @@ class _SelectNearestActiveDriversScreenState
             widget.referenceRideRequest!.remove();
             Fluttertoast.showToast(msg: "you have cancelled the ride request.");
 
-            SystemNavigator.pop();
+            Navigator.of(context).pop();
           },
         ),
       ),
