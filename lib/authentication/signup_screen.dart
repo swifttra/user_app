@@ -98,7 +98,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 child: Image.asset("images/logo.png"),
               ),
               const Text(
-                "Sign In as a user",
+                "Sign Up",
                 style: TextStyle(
                   fontSize: 26,
                   color: Colors.black,

@@ -53,17 +53,17 @@ class _SearchPlacesScreenState extends State<SearchPlacesScreen> {
           Container(
             height: 160,
             decoration: const BoxDecoration(
-              color: Color.fromARGB(255, 255, 136, 0),
+              color: Colors.white,
               boxShadow: [
-                BoxShadow(
-                  color: Color.fromARGB(255, 255, 136, 0),
-                  blurRadius: 8,
-                  spreadRadius: 0.5,
-                  offset: Offset(
-                    0.7,
-                    0.7,
-                  ),
-                ),
+                // BoxShadow(
+                //   color: Color.fromARGB(255, 255, 136, 0),
+                //   blurRadius: 8,
+                //   spreadRadius: 0.5,
+                //   offset: Offset(
+                //     0.7,
+                //     0.7,
+                //   ),
+                // ),
               ],
             ),
             child: Padding(
@@ -74,9 +74,7 @@ class _SearchPlacesScreenState extends State<SearchPlacesScreen> {
                   Stack(
                     children: [
                       GestureDetector(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
+                        onTap: () => Navigator.of(context).pop(),
                         child: const Icon(
                           Icons.arrow_back,
                           color: Colors.white,
@@ -84,7 +82,7 @@ class _SearchPlacesScreenState extends State<SearchPlacesScreen> {
                       ),
                       const Center(
                         child: Text(
-                          "Search & Set DropOff Location",
+                          "Search Destination",
                           style: TextStyle(
                             fontSize: 18.0,
                             color: Colors.white,
@@ -99,7 +97,7 @@ class _SearchPlacesScreenState extends State<SearchPlacesScreen> {
                     children: [
                       const Icon(
                         Icons.adjust_sharp,
-                        color: Colors.white,
+                        color: Colors.orangeAccent,
                       ),
                       const SizedBox(
                         width: 18.0,
@@ -112,7 +110,7 @@ class _SearchPlacesScreenState extends State<SearchPlacesScreen> {
                               findPlaceAutoCompleteSearch(valueTyped);
                             },
                             decoration: const InputDecoration(
-                              hintText: "search here...",
+                              hintText: "Search Location Here...",
                               fillColor: Colors.white54,
                               filled: true,
                               border: InputBorder.none,
@@ -146,7 +144,7 @@ class _SearchPlacesScreenState extends State<SearchPlacesScreen> {
                     separatorBuilder: (BuildContext context, int index) {
                       return const Divider(
                         height: 1,
-                        color: Color.fromARGB(255, 255, 136, 0),
+                        color: Colors.grey,
                         thickness: 1,
                       );
                     },
