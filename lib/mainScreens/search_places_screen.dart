@@ -51,20 +51,9 @@ class _SearchPlacesScreenState extends State<SearchPlacesScreen> {
         children: [
           //search place ui
           Container(
-            height: 160,
+            height: 180,
             decoration: const BoxDecoration(
-              color: Colors.white,
-              boxShadow: [
-                // BoxShadow(
-                //   color: Color.fromARGB(255, 255, 136, 0),
-                //   blurRadius: 8,
-                //   spreadRadius: 0.5,
-                //   offset: Offset(
-                //     0.7,
-                //     0.7,
-                //   ),
-                // ),
-              ],
+              color: Colors.orangeAccent,
             ),
             child: Padding(
               padding: const EdgeInsets.all(10.0),
@@ -96,24 +85,30 @@ class _SearchPlacesScreenState extends State<SearchPlacesScreen> {
                   Row(
                     children: [
                       const Icon(
-                        Icons.adjust_sharp,
-                        color: Colors.orangeAccent,
+                        Icons.search_rounded,
+                        color: Colors.white,
                       ),
                       const SizedBox(
-                        width: 18.0,
+                        width: 2.0,
                       ),
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(10.0),
                           child: TextField(
                             onChanged: (valueTyped) {
                               findPlaceAutoCompleteSearch(valueTyped);
                             },
-                            decoration: const InputDecoration(
-                              hintText: "Search Location Here...",
-                              fillColor: Colors.white54,
+                            decoration: InputDecoration(
+                              hintText: "Search Here",
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide(
+                                  width: 0,
+                                  style: BorderStyle.none,
+                                ),
+                              ),
+                              fillColor: Colors.white,
                               filled: true,
-                              border: InputBorder.none,
                               contentPadding: EdgeInsets.only(
                                 left: 11.0,
                                 top: 8.0,
@@ -143,8 +138,8 @@ class _SearchPlacesScreenState extends State<SearchPlacesScreen> {
                     },
                     separatorBuilder: (BuildContext context, int index) {
                       return const Divider(
-                        height: 1,
-                        color: Colors.grey,
+                        height: 0.5,
+                        color: Color.fromARGB(255, 244, 244, 244),
                         thickness: 1,
                       );
                     },

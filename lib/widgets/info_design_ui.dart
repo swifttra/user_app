@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-
-class InfoDesignUIWidget extends StatefulWidget
-{
+class InfoDesignUIWidget extends StatefulWidget {
   String? textInfo;
   IconData? iconData;
 
@@ -12,26 +10,22 @@ class InfoDesignUIWidget extends StatefulWidget
   State<InfoDesignUIWidget> createState() => _InfoDesignUIWidgetState();
 }
 
-
-
-
-class _InfoDesignUIWidgetState extends State<InfoDesignUIWidget>
-{
+class _InfoDesignUIWidgetState extends State<InfoDesignUIWidget> {
   @override
-  Widget build(BuildContext context)
-  {
+  Widget build(BuildContext context) {
     return Card(
-      color: Colors.white54,
+      color: Colors.white,
+      elevation: 0.0,
       margin: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
       child: ListTile(
         leading: Icon(
           widget.iconData,
-          color: Colors.black,
+          color: Colors.orangeAccent,
         ),
         title: Text(
           widget.textInfo!,
           style: const TextStyle(
-            color: Colors.black,
+            color: Colors.grey,
             fontSize: 16,
             fontWeight: FontWeight.bold,
           ),

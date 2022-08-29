@@ -67,6 +67,7 @@ class _PlacePredictionTileDesignState extends State<PlacePredictionTileDesign> {
         getPlaceDirectionDetails(widget.predictedPlaces!.place_id, context);
       },
       style: ElevatedButton.styleFrom(
+        elevation: 0.0,
         primary: Colors.white,
       ),
       child: Padding(
@@ -74,8 +75,8 @@ class _PlacePredictionTileDesignState extends State<PlacePredictionTileDesign> {
         child: Row(
           children: [
             const Icon(
-              Icons.add_location,
-              color: Colors.orange,
+              Icons.location_searching_rounded,
+              color: Colors.orangeAccent,
             ),
             const SizedBox(
               width: 14.0,
@@ -92,7 +93,7 @@ class _PlacePredictionTileDesignState extends State<PlacePredictionTileDesign> {
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
                       fontSize: 16.0,
-                      color: Colors.orange,
+                      color: Colors.black,
                     ),
                   ),
                   const SizedBox(
@@ -103,7 +104,7 @@ class _PlacePredictionTileDesignState extends State<PlacePredictionTileDesign> {
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
                       fontSize: 12.0,
-                      color: Colors.orange,
+                      color: Colors.grey,
                     ),
                   ),
                   const SizedBox(
