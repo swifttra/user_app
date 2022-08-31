@@ -17,7 +17,7 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController nameTextEditingController = TextEditingController();
-
+  TextEditingController surnameTextEditingController = TextEditingController();
   TextEditingController emailTextEditingController = TextEditingController();
   TextEditingController phoneTextEditingController = TextEditingController();
   TextEditingController passwordTextEditingController = TextEditingController();
@@ -25,6 +25,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   validateForm() {
     if (nameTextEditingController.text.length < 3) {
       Fluttertoast.showToast(msg: "name must be atleast 3 Characters.");
+    } else if (surnameTextEditingController.text.isEmpty) {
+      Fluttertoast.showToast(msg: "Enter Your surname ");
     } else if (!emailTextEditingController.text.contains("@")) {
       Fluttertoast.showToast(msg: "Email address is not Valid.");
     } else if (phoneTextEditingController.text.isEmpty) {
@@ -61,6 +63,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       Map userMap = {
         "id": firebaseUser.uid,
         "name": nameTextEditingController.text.trim(),
+        "surname": surnameTextEditingController.text.trim(),
         "email": emailTextEditingController.text.trim(),
         "phone": phoneTextEditingController.text.trim(),
       };
@@ -114,6 +117,33 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 decoration: InputDecoration(
                   labelText: "First name",
                   hintText: "First name",
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey),
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey),
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                  hintStyle: TextStyle(
+                    color: Colors.black,
+                    fontSize: 10,
+                  ),
+                  labelStyle: TextStyle(
+                    color: Colors.black,
+                    fontSize: 14,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              TextField(
+                controller: surnameTextEditingController,
+                style: const TextStyle(color: Colors.black),
+                decoration: InputDecoration(
+                  labelText: "Surname",
+                  hintText: "Surname",
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey),
                     borderRadius: BorderRadius.circular(30.0),
