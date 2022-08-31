@@ -3,6 +3,7 @@ import 'package:swifttra/global/global.dart';
 import 'package:swifttra/mainScreens/profile_screen.dart';
 import 'package:swifttra/mainScreens/trips_history_screen.dart';
 import 'package:swifttra/splashScreen/splash_screen.dart';
+import '../mainScreens/payment_screen.dart';
 
 class MyDrawer extends StatefulWidget {
   String? name;
@@ -90,6 +91,30 @@ class _MyDrawerState extends State<MyDrawer> {
               ),
               title: Text(
                 "Ride History",
+                style: TextStyle(color: Colors.black),
+              ),
+            ),
+          ),
+
+          const SizedBox(height: 10.0),
+
+          const SizedBox(
+            height: 12.0,
+          ),
+
+          //drawer body
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (c) => PaymentScreen()));
+            },
+            child: const ListTile(
+              leading: Icon(
+                Icons.money,
+                color: Colors.orangeAccent,
+              ),
+              title: Text(
+                "Payments",
                 style: TextStyle(color: Colors.black),
               ),
             ),
