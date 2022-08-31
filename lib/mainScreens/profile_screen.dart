@@ -60,7 +60,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
             Padding(
               padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 4.0),
               child: Text(
-                userModelCurrentInfo!.name!,
+                userModelCurrentInfo!.name! +
+                    " " +
+                    userModelCurrentInfo!.surname!,
                 style: const TextStyle(
                   fontSize: 20.0,
                   color: Colors.black,

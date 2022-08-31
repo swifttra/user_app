@@ -24,7 +24,7 @@ class _RateDriverScreenState extends State<RateDriverScreen> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(14),
         ),
-        backgroundColor: Colors.white60,
+        backgroundColor: Colors.white,
         child: Container(
           margin: const EdgeInsets.all(8),
           width: double.infinity,
@@ -54,15 +54,12 @@ class _RateDriverScreenState extends State<RateDriverScreen> {
                 height: 4.0,
                 thickness: 4.0,
               ),
-              const SizedBox(
-                height: 22.0,
-              ),
               SmoothStarRating(
                 rating: countRatingStars,
                 allowHalfRating: false,
                 starCount: 5,
-                color: Colors.green,
-                borderColor: Colors.green,
+                color: Colors.white,
+                borderColor: Colors.white,
                 size: 46,
                 onRatingChanged: (valueOfStarsChoosed) {
                   countRatingStars = valueOfStarsChoosed;
@@ -102,7 +99,7 @@ class _RateDriverScreenState extends State<RateDriverScreen> {
                 style: const TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
-                  color: Colors.green,
+                  color: Colors.white,
                 ),
               ),
               const SizedBox(
@@ -134,10 +131,16 @@ class _RateDriverScreenState extends State<RateDriverScreen> {
                       Fluttertoast.showToast(msg: "Please Restart App Now");
                     });
                   },
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.green,
-                    padding: const EdgeInsets.symmetric(horizontal: 74),
-                  ),
+                  style: ButtonStyle(
+                      foregroundColor: MaterialStateProperty.all<Color>(
+                        Colors.white,
+                      ),
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.orangeAccent),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(25.0),
+                      ))),
                   child: const Text(
                     "Submit",
                     style: TextStyle(

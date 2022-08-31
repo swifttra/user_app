@@ -24,7 +24,7 @@ class _TripsHistoryScreenState extends State<TripsHistoryScreen> {
       body: ListView.separated(
         separatorBuilder: (context, i) => const Divider(
           color: Colors.grey,
-          thickness: 2,
+          thickness: 0.4,
           height: 2,
         ),
         itemBuilder: (context, i) {

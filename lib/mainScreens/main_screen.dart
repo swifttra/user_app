@@ -53,6 +53,7 @@ class _MainScreenState extends State<MainScreen> {
   Set<Circle> circlesSet = {};
 
   String userName = "your Name";
+  String surname = "your surname";
   String userEmail = "your Email";
 
   bool openNavigationDrawer = true;
@@ -97,6 +98,7 @@ class _MainScreenState extends State<MainScreen> {
     print("this is your address = " + humanReadableAddress);
 
     userName = userModelCurrentInfo!.name!;
+    surname = userModelCurrentInfo!.surname!;
     userEmail = userModelCurrentInfo!.email!;
 
     initializeGeoFireListener();
@@ -136,6 +138,7 @@ class _MainScreenState extends State<MainScreen> {
       "destination": destinationLocationMap,
       "time": DateTime.now().toString(),
       "userName": userModelCurrentInfo!.name,
+      "surname": userModelCurrentInfo!.surname,
       "userPhone": userModelCurrentInfo!.phone,
       "originAddress": originLocation.locationName,
       "destinationAddress": destinationLocation.locationName,
@@ -462,6 +465,7 @@ class _MainScreenState extends State<MainScreen> {
           ),
           child: MyDrawer(
             name: userName,
+            surname: surname,
             email: userEmail,
           ),
         ),

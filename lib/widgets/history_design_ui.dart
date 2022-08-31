@@ -25,7 +25,7 @@ class _HistoryDesignUIWidgetState extends State<HistoryDesignUIWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.black54,
+      color: Colors.white,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         child: Column(
@@ -49,7 +49,7 @@ class _HistoryDesignUIWidgetState extends State<HistoryDesignUIWidget> {
                   width: 12,
                 ),
                 Text(
-                  "\$ " + widget.tripsHistoryModel!.fareAmount!,
+                  "\₦ " + widget.tripsHistoryModel!.fareAmount!,
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -67,7 +67,7 @@ class _HistoryDesignUIWidgetState extends State<HistoryDesignUIWidget> {
               children: [
                 const Icon(
                   Icons.car_repair,
-                  color: Colors.black,
+                  color: Colors.orangeAccent,
                   size: 28,
                 ),
                 const SizedBox(
@@ -77,7 +77,7 @@ class _HistoryDesignUIWidgetState extends State<HistoryDesignUIWidget> {
                   widget.tripsHistoryModel!.car_details!,
                   style: const TextStyle(
                     fontSize: 16,
-                    color: Colors.grey,
+                    color: Colors.black,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -154,7 +154,7 @@ class _HistoryDesignUIWidgetState extends State<HistoryDesignUIWidget> {
                 Text(
                   formatDateAndTime(widget.tripsHistoryModel!.time!),
                   style: const TextStyle(
-                    color: Colors.grey,
+                    color: Colors.black,
                   ),
                 ),
               ],

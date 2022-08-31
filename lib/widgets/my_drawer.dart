@@ -7,9 +7,10 @@ import '../mainScreens/payment_screen.dart';
 
 class MyDrawer extends StatefulWidget {
   String? name;
+  String? surname;
   String? email;
 
-  MyDrawer({this.name, this.email});
+  MyDrawer({this.surname, this.name, this.email});
 
   @override
   _MyDrawerState createState() => _MyDrawerState();
@@ -50,7 +51,7 @@ class _MyDrawerState extends State<MyDrawer> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        widget.name.toString(),
+                        widget.surname.toString(),
                         style: const TextStyle(
                           fontSize: 16,
                           color: Colors.white,

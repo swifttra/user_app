@@ -54,7 +54,7 @@ class _SelectNearestActiveDriversScreenState
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white54,
+        backgroundColor: Colors.orangeAccent,
         title: const Text(
           "Nearest Drivers",
           style: TextStyle(
@@ -68,7 +68,7 @@ class _SelectNearestActiveDriversScreenState
             widget.referenceRideRequest!.remove();
             Fluttertoast.showToast(msg: "you have cancelled the ride request.");
 
-            Navigator.of(context).pop();
+            Navigator.pop(context);
           },
         ),
       ),
@@ -83,9 +83,8 @@ class _SelectNearestActiveDriversScreenState
               Navigator.pop(context, "driverChoosed");
             },
             child: Card(
-              color: Colors.grey,
-              elevation: 3,
-              shadowColor: Colors.green,
+              color: Colors.white,
+              elevation: 0.0,
               margin: const EdgeInsets.all(8),
               child: ListTile(
                 leading: Padding(
@@ -118,8 +117,8 @@ class _SelectNearestActiveDriversScreenState
                       rating: dList[index]["ratings"] == null
                           ? 0.0
                           : double.parse(dList[index]["ratings"]),
-                      color: Colors.black,
-                      borderColor: Colors.black,
+                      color: Colors.orangeAccent,
+                      borderColor: Colors.orangeAccent,
                       allowHalfRating: true,
                       starCount: 5,
                       size: 15,
@@ -130,7 +129,7 @@ class _SelectNearestActiveDriversScreenState
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "\$ " + getFareAmountAccordingToVehicleType(index),
+                      "\₦ " + getFareAmountAccordingToVehicleType(index),
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
