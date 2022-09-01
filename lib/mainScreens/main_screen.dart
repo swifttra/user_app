@@ -319,10 +319,11 @@ class _MainScreenState extends State<MainScreen> {
 
       Fluttertoast.showToast(
           msg:
-              "No Online Nearest Driver Available. Search Again after some time, Restarting App Now.");
+              "No Online Nearest Driver Available. Search Again after some time");
 
       Future.delayed(const Duration(milliseconds: 4000), () {
-        SystemNavigator.pop();
+        Navigator.push(
+            context, MaterialPageRoute(builder: (c) => MainScreen()));
       });
 
       return;
@@ -367,9 +368,10 @@ class _MainScreenState extends State<MainScreen> {
                       "The driver has cancelled your request. Please choose another driver.");
 
               Future.delayed(const Duration(milliseconds: 3000), () {
-                Fluttertoast.showToast(msg: "Please Restart App Now.");
+                // Fluttertoast.showToast(msg: "Please Restart App Now.");
 
-                SystemNavigator.pop();
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (c) => MainScreen()));
               });
             }
 

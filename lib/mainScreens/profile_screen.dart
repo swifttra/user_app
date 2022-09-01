@@ -31,7 +31,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           onTap: () => Navigator.of(context).pop(),
                           child: const Icon(
                             Icons.arrow_back,
-                            color: Colors.black,
+                            color: Colors.white,
                           ),
                         ),
                         const Center(
@@ -128,31 +128,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
             const SizedBox(
               height: 20,
             ),
-//Button
-
-            Container(
-              width: 350,
-              height: 50,
-              // child: ElevatedButton(
-              //   onPressed: () {
-              //     SystemNavigator.pop();
-              //   },
-              //   style: ButtonStyle(
-              //       foregroundColor: MaterialStateProperty.all<Color>(
-              //         Colors.white,
-              //       ),
-              //       backgroundColor:
-              //           MaterialStateProperty.all<Color>(Colors.orangeAccent),
-              //       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              //           RoundedRectangleBorder(
-              //         borderRadius: BorderRadius.circular(25.0),
-              //       ))),
-              //   child: const Text(
-              //     "Close",
-              //     style: TextStyle(color: Colors.white),
-              //   ),
-              // ),
-            )
           ],
         ),
       ),
