@@ -85,11 +85,11 @@ class AssistantMethods {
   static double calculateFareAmountFromOriginToDestination(
       DirectionDetailsInfo directionDetailsInfo) {
     double timeTraveledFareAmountPerMinute =
-        (directionDetailsInfo.duration_value! / 60) * 0.1;
+        (directionDetailsInfo.duration_value! / 60) * 9;
     double distanceTraveledFareAmountPerKilometer =
-        (directionDetailsInfo.duration_value! / 1000) * 0.1;
+        (directionDetailsInfo.duration_value! / 1000) * 65;
 
-    //USD
+    //NGN
     double totalFareAmount = timeTraveledFareAmountPerMinute +
         distanceTraveledFareAmountPerKilometer;
 
