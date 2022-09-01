@@ -1,14 +1,18 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:swifttra/infoHandler/app_info.dart';
 import 'package:swifttra/splashScreen/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+      overlays: <SystemUiOverlay>[]);
   await Firebase.initializeApp();
 
-  ErrorWidget.builder = (FlutterErrorDetails details) => Scaffold(
+  ErrorWidget.builder = (FlutterErrorDetails details) => const Scaffold(
         body: Center(
             child: Text("Something went wrong.",
                 style: TextStyle(color: Colors.red))),

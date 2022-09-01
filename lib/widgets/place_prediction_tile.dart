@@ -68,7 +68,7 @@ class _PlacePredictionTileDesignState extends State<PlacePredictionTileDesign> {
       },
       style: ElevatedButton.styleFrom(
         elevation: 0.0,
-        primary: Colors.white,
+        backgroundColor: Colors.white,
       ),
       child: Padding(
         padding: const EdgeInsets.all(4.0),

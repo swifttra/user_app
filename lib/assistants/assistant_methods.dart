@@ -1,11 +1,9 @@
-import 'dart:convert';
+// ignore_for_file: unused_local_variable
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:http/http.dart' as http;
 import 'package:swifttra/assistants/request_assistant.dart';
 import 'package:swifttra/global/global.dart';
 import 'package:swifttra/global/map_key.dart';
@@ -125,12 +123,6 @@ class AssistantMethods {
       "priority": "high",
       "to": deviceRegistrationToken,
     };
-
-    var responseNotification = http.post(
-      Uri.parse("https://fcm.googleapis.com/fcm/send"),
-      headers: headerNotification,
-      body: jsonEncode(officialNotificationFormat),
-    );
   }
 
   //retrieve the trips KEYS for online user

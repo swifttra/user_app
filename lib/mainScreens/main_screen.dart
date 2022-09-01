@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api, avoid_print
+
 import 'dart:async';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -22,6 +24,8 @@ import 'package:swifttra/widgets/pay_fare_amount_dialog.dart';
 import 'package:swifttra/widgets/progress_dialog.dart';
 
 class MainScreen extends StatefulWidget {
+  const MainScreen({Key? key}) : super(key: key);
+
   @override
   _MainScreenState createState() => _MainScreenState();
 }
@@ -30,7 +34,7 @@ class _MainScreenState extends State<MainScreen> {
   final Completer<GoogleMapController> _controllerGoogleMap = Completer();
   GoogleMapController? newGoogleMapController;
 
-  static final CameraPosition _kGooglePlex = CameraPosition(
+  static const CameraPosition _kGooglePlex = CameraPosition(
     target: LatLng(37.42796133580664, -122.085749655962),
     zoom: 14.4746,
   );
@@ -93,9 +97,10 @@ class _MainScreenState extends State<MainScreen> {
         .animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
 
     String humanReadableAddress =
+        // ignore: use_build_context_synchronously
         await AssistantMethods.searchAddressForGeographicCoOrdinates(
             userCurrentPosition!, context);
-    print("this is your address = " + humanReadableAddress);
+    print("this is your address = $humanReadableAddress");
 
     userName = userModelCurrentInfo!.name!;
     surname = userModelCurrentInfo!.surname!;
@@ -227,6 +232,7 @@ class _MainScreenState extends State<MainScreen> {
                 String assignedDriverId =
                     (eventSnap.snapshot.value as Map)["driverId"].toString();
 
+                // ignore: use_build_context_synchronously
                 Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -266,8 +272,8 @@ class _MainScreenState extends State<MainScreen> {
       }
 
       setState(() {
-        driverRideStatus = "Driver is Coming :: " +
-            directionDetailsInfo.duration_text.toString();
+        driverRideStatus =
+            "Driver is Coming :: ${directionDetailsInfo.duration_text}";
       });
 
       requestPositionInfo = true;
@@ -296,8 +302,8 @@ class _MainScreenState extends State<MainScreen> {
       }
 
       setState(() {
-        driverRideStatus = "Going towards Destination :: " +
-            directionDetailsInfo.duration_text.toString();
+        driverRideStatus =
+            "Going towards Destination :: ${directionDetailsInfo.duration_text}";
       });
 
       requestPositionInfo = true;
@@ -306,7 +312,7 @@ class _MainScreenState extends State<MainScreen> {
 
   searchNearestOnlineDrivers() async {
     //no active driver available
-    if (onlineNearByAvailableDriversList.length == 0) {
+    if (onlineNearByAvailableDriversList.isEmpty) {
       //cancel/delete the RideRequest Information
       referenceRideRequest!.remove();
 
@@ -319,10 +325,11 @@ class _MainScreenState extends State<MainScreen> {
 
       Fluttertoast.showToast(
           msg:
-              "No Online Nearest Driver Available. Search Again after some time, Restarting App Now.");
+              "No Online Nearest Driver Available. Search Again after some time");
 
       Future.delayed(const Duration(milliseconds: 4000), () {
-        SystemNavigator.pop();
+        Navigator.push(
+            context, MaterialPageRoute(builder: (c) => const MainScreen()));
       });
 
       return;
@@ -331,6 +338,7 @@ class _MainScreenState extends State<MainScreen> {
     //active driver available
     await retrieveOnlineDriversInformation(onlineNearByAvailableDriversList);
 
+    // ignore: use_build_context_synchronously
     var response = await Navigator.push(
         context,
         MaterialPageRoute(
@@ -367,9 +375,10 @@ class _MainScreenState extends State<MainScreen> {
                       "The driver has cancelled your request. Please choose another driver.");
 
               Future.delayed(const Duration(milliseconds: 3000), () {
-                Fluttertoast.showToast(msg: "Please Restart App Now.");
+                // Fluttertoast.showToast(msg: "Please Restart App Now.");
 
-                SystemNavigator.pop();
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (c) => const MainScreen()));
               });
             }
 
@@ -457,7 +466,7 @@ class _MainScreenState extends State<MainScreen> {
 
     return Scaffold(
       key: sKey,
-      drawer: Container(
+      drawer: SizedBox(
         width: 265,
         child: Theme(
           data: Theme.of(context).copyWith(
@@ -563,11 +572,7 @@ class _MainScreenState extends State<MainScreen> {
                                 Provider.of<AppInfo>(context)
                                             .userPickUpLocation !=
                                         null
-                                    ? (Provider.of<AppInfo>(context)
-                                                .userPickUpLocation!
-                                                .locationName!)
-                                            .substring(0, 24) +
-                                        "..."
+                                    ? "${(Provider.of<AppInfo>(context).userPickUpLocation!.locationName!).substring(0, 24)}..."
                                     : "Cannot Get Address",
                                 style: const TextStyle(
                                     color: Colors.grey, fontSize: 16),
@@ -594,7 +599,7 @@ class _MainScreenState extends State<MainScreen> {
                           var responseFromSearchScreen = await Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (c) => SearchPlacesScreen()));
+                                  builder: (c) => const SearchPlacesScreen()));
 
                           if (responseFromSearchScreen == "obtainedDropoff") {
                             setState(() {
@@ -653,10 +658,11 @@ class _MainScreenState extends State<MainScreen> {
 
                       const SizedBox(height: 40.0, width: 80.0),
 
-                      Container(
+                      SizedBox(
                         width: 350,
                         height: 50,
                         child: ElevatedButton(
+                            // ignore: sort_child_properties_last
                             child: const Text("Request Lift",
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 17)),
@@ -827,7 +833,7 @@ class _MainScreenState extends State<MainScreen> {
                       child: ElevatedButton.icon(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.green,
+                          backgroundColor: Colors.green,
                         ),
                         icon: const Icon(
                           Icons.phone_android,
@@ -878,6 +884,7 @@ class _MainScreenState extends State<MainScreen> {
       tripDirectionDetailsInfo = directionDetailsInfo;
     });
 
+    // ignore: use_build_context_synchronously
     Navigator.pop(context);
 
     print("These are points = ");
@@ -890,6 +897,7 @@ class _MainScreenState extends State<MainScreen> {
     pLineCoOrdinatesList.clear();
 
     if (decodedPolyLinePointsResultList.isNotEmpty) {
+      // ignore: avoid_function_literals_in_foreach_calls
       decodedPolyLinePointsResultList.forEach((PointLatLng pointLatLng) {
         pLineCoOrdinatesList
             .add(LatLng(pointLatLng.latitude, pointLatLng.longitude));
@@ -1043,7 +1051,7 @@ class _MainScreenState extends State<MainScreen> {
       markersSet.clear();
       circlesSet.clear();
 
-      Set<Marker> driversMarkerSet = Set<Marker>();
+      Set<Marker> driversMarkerSet = <Marker>{};
 
       for (ActiveNearbyAvailableDrivers eachDriver
           in GeoFireAssistant.activeNearbyAvailableDriversList) {
@@ -1051,7 +1059,7 @@ class _MainScreenState extends State<MainScreen> {
             LatLng(eachDriver.locationLatitude!, eachDriver.locationLongitude!);
 
         Marker marker = Marker(
-          markerId: MarkerId("driver" + eachDriver.driverId!),
+          markerId: MarkerId("driver${eachDriver.driverId!}"),
           position: eachDriverActivePosition,
           icon: activeNearbyIcon!,
           rotation: 360,
