@@ -24,7 +24,7 @@ class _MySplashScreenState extends State<MySplashScreen> {
       if (fAuth.currentUser != null) {
         currentFirebaseUser = fAuth.currentUser;
         Navigator.push(
-            context, MaterialPageRoute(builder: (c) => MainScreen()));
+            context, MaterialPageRoute(builder: (c) => const MainScreen()));
       } else {
         Navigator.push(
             context, MaterialPageRoute(builder: (c) => const LoginScreen()));
@@ -48,9 +48,13 @@ class _MySplashScreenState extends State<MySplashScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Padding(
-                padding: const EdgeInsets.all(40.0),
-                child: Image.asset("images/logo.png"),
+              Container(
+                width: 250,
+                height: 250,
+                child: Padding(
+                  padding: const EdgeInsets.all(40.0),
+                  child: Image.asset("images/logo.png"),
+                ),
               ),
             ],
           ),

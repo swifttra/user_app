@@ -5,14 +5,16 @@ import 'package:swifttra/mainScreens/trips_history_screen.dart';
 import 'package:swifttra/splashScreen/splash_screen.dart';
 import '../mainScreens/payment_screen.dart';
 
+// ignore: must_be_immutable
 class MyDrawer extends StatefulWidget {
   String? name;
   String? surname;
   String? email;
 
-  MyDrawer({this.surname, this.name, this.email});
+  MyDrawer({Key? key, this.surname, this.name, this.email}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _MyDrawerState createState() => _MyDrawerState();
 }
 
@@ -27,7 +29,7 @@ class _MyDrawerState extends State<MyDrawer> {
             height: 165,
             color: Colors.white,
             child: DrawerHeader(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
                     Color.fromARGB(255, 255, 191, 0),
@@ -82,8 +84,10 @@ class _MyDrawerState extends State<MyDrawer> {
           //drawer body
           GestureDetector(
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (c) => TripsHistoryScreen()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (c) => const TripsHistoryScreen()));
             },
             child: const ListTile(
               leading: Icon(
@@ -106,8 +110,8 @@ class _MyDrawerState extends State<MyDrawer> {
           //drawer body
           GestureDetector(
             onTap: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (c) => PaymentScreen()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (c) => const PaymentScreen()));
             },
             child: const ListTile(
               leading: Icon(
@@ -160,8 +164,8 @@ class _MyDrawerState extends State<MyDrawer> {
           const SizedBox(height: 16.0),
           GestureDetector(
             onTap: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (c) => ProfileScreen()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (c) => const ProfileScreen()));
             },
             child: const ListTile(
               leading: Icon(
@@ -236,7 +240,7 @@ class _MyDrawerState extends State<MyDrawer> {
           ),
 
           const SizedBox(height: 257.0),
-          Container(
+          SizedBox(
             height: 40,
             child: ElevatedButton(
               onPressed: () {
@@ -251,7 +255,7 @@ class _MyDrawerState extends State<MyDrawer> {
                   backgroundColor:
                       MaterialStateProperty.all<Color>(Colors.orangeAccent),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
+                      const RoundedRectangleBorder(
                           // borderRadius: BorderRadius.circular(15.0),
                           ))),
               child: const Text(

@@ -3,6 +3,8 @@ import 'package:swifttra/global/global.dart';
 import 'package:swifttra/widgets/info_design_ui.dart';
 
 class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({Key? key}) : super(key: key);
+
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
@@ -54,14 +56,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
             Container(
                 width: 200,
                 height: 200,
-                child: Image.asset("images/logo.png"),
-                alignment: Alignment.topCenter),
+                alignment: Alignment.topCenter,
+                child: Image.asset("images/logo.png")),
             Padding(
-              padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 4.0),
+              padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 4.0),
               child: Text(
-                userModelCurrentInfo!.name! +
-                    " " +
-                    userModelCurrentInfo!.surname!,
+                "${userModelCurrentInfo!.name!} ${userModelCurrentInfo!.surname!}",
                 style: const TextStyle(
                   fontSize: 20.0,
                   color: Colors.black,
@@ -84,9 +84,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
               height: 38.0,
             ),
             //email
-            Padding(
-              padding: const EdgeInsets.only(right: 200.0),
-              child: const SizedBox(
+            const Padding(
+              padding: EdgeInsets.only(right: 200.0),
+              child: SizedBox(
                   child: Text("Email Address",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -111,9 +111,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
               height: 38.0,
             ),
             //email
-            Padding(
-              padding: const EdgeInsets.only(right: 200.0),
-              child: const SizedBox(
+            const Padding(
+              padding: EdgeInsets.only(right: 200.0),
+              child: SizedBox(
                   child: Text("Phone Number",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,

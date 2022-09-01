@@ -102,14 +102,14 @@ class _SearchPlacesScreenState extends State<SearchPlacesScreen> {
                               hintText: "Search Here",
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   width: 0,
                                   style: BorderStyle.none,
                                 ),
                               ),
                               fillColor: Colors.white,
                               filled: true,
-                              contentPadding: EdgeInsets.only(
+                              contentPadding: const EdgeInsets.only(
                                 left: 11.0,
                                 top: 8.0,
                                 bottom: 8.0,

@@ -32,7 +32,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
+        body: SizedBox(
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
       child: Builder(builder: (BuildContext context) {
@@ -43,6 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
             _controller.complete(webViewController);
           },
           onProgress: (int progress) {
+            // ignore: avoid_print
             print("progress $progress%");
           },
           javascriptChannels: <JavascriptChannel>{

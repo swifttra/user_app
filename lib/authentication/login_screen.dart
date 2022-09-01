@@ -101,30 +101,28 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(
                 height: 20,
               ),
-              Container(
-                child: TextField(
-                  controller: emailTextEditingController,
-                  keyboardType: TextInputType.emailAddress,
-                  style: const TextStyle(color: Colors.black),
-                  decoration: InputDecoration(
-                    labelText: "Email",
-                    hintText: "Email",
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey),
-                      borderRadius: BorderRadius.circular(30.0),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey),
-                      borderRadius: BorderRadius.circular(30.0),
-                    ),
-                    hintStyle: TextStyle(
-                      color: Colors.black,
-                      fontSize: 10,
-                    ),
-                    labelStyle: TextStyle(
-                      color: Colors.black,
-                      fontSize: 14,
-                    ),
+              TextField(
+                controller: emailTextEditingController,
+                keyboardType: TextInputType.emailAddress,
+                style: const TextStyle(color: Colors.black),
+                decoration: InputDecoration(
+                  labelText: "Email",
+                  hintText: "Email",
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.grey),
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.grey),
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                  hintStyle: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 10,
+                  ),
+                  labelStyle: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 14,
                   ),
                 ),
               ),
@@ -140,18 +138,18 @@ class _LoginScreenState extends State<LoginScreen> {
                   labelText: "Password",
                   hintText: "Password",
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey),
+                    borderSide: const BorderSide(color: Colors.grey),
                     borderRadius: BorderRadius.circular(30.0),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey),
+                    borderSide: const BorderSide(color: Colors.grey),
                     borderRadius: BorderRadius.circular(30.0),
                   ),
-                  hintStyle: TextStyle(
+                  hintStyle: const TextStyle(
                     color: Colors.black,
                     fontSize: 10,
                   ),
-                  labelStyle: TextStyle(
+                  labelStyle: const TextStyle(
                     color: Colors.black,
                     fontSize: 14,
                   ),
@@ -160,7 +158,7 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(
                 height: 20,
               ),
-              Container(
+              SizedBox(
                 width: 350,
                 height: 50,
                 child: ElevatedButton(
@@ -186,10 +184,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-              Text(
+              const Text(
                 "OR",
                 style: TextStyle(color: Colors.grey),
               ),

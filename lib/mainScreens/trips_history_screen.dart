@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:swifttra/infoHandler/app_info.dart';
 import 'package:swifttra/widgets/history_design_ui.dart';
 
 class TripsHistoryScreen extends StatefulWidget {
+  const TripsHistoryScreen({Key? key}) : super(key: key);
+
   @override
   State<TripsHistoryScreen> createState() => _TripsHistoryScreenState();
 }

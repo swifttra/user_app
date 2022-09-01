@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class PayButton extends StatelessWidget {
+  // ignore: use_key_in_widget_constructors
   const PayButton({required this.callback});
 
   final VoidCallback callback;
@@ -8,7 +9,7 @@ class PayButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      child: Container(
+      child: SizedBox(
         width: MediaQuery.of(context).size.width,
         height: 45,
         child: ButtonTheme(
@@ -16,7 +17,7 @@ class PayButton extends StatelessWidget {
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
               padding: const EdgeInsets.all(10),
-              primary: Colors.orangeAccent,
+              backgroundColor: Colors.orangeAccent,
               elevation: 5,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16.0)),
@@ -24,7 +25,7 @@ class PayButton extends StatelessWidget {
             onPressed: callback,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
+              children: const <Widget>[
                 Text(
                   'Pay Now!!!',
                   style: TextStyle(
