@@ -1,11 +1,14 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:swifttra/infoHandler/app_info.dart';
 import 'package:swifttra/splashScreen/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  SystemChrome.setEnabledSystemUIOverlays(<SystemUiOverlay>[]);
   await Firebase.initializeApp();
 
   ErrorWidget.builder = (FlutterErrorDetails details) => Scaffold(

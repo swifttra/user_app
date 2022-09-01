@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:swifttra/global/global.dart';
 import 'package:swifttra/widgets/info_design_ui.dart';
 

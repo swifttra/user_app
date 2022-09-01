@@ -37,7 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
       width: MediaQuery.of(context).size.width,
       child: Builder(builder: (BuildContext context) {
         return WebView(
-          initialUrl: "https://payst ack.com/pay/swifttra",
+          initialUrl: "https://paystack.com/pay/swifttra",
           javascriptMode: JavascriptMode.unrestricted,
           onWebViewCreated: (WebViewController webViewController) {
             _controller.complete(webViewController);
@@ -57,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return JavascriptChannel(
         name: "Toaster",
         onMessageReceived: (JavascriptMessage message) {
-          Scaffold.of(context).showSnackBar(
+          ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(message.message)),
           );
         });
