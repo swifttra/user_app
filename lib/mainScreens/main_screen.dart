@@ -513,7 +513,7 @@ class _MainScreenState extends State<MainScreen> {
                   sKey.currentState!.openDrawer();
                 } else {
                   //restart-refresh-minimize app progmatically
-                  SystemNavigator.pop();
+                  Navigator.of(context).pop();
                 }
               },
               child: CircleAvatar(
@@ -908,7 +908,7 @@ class _MainScreenState extends State<MainScreen> {
 
     setState(() {
       Polyline polyline = Polyline(
-        color: Colors.purpleAccent,
+        color: Colors.orangeAccent,
         polylineId: const PolylineId("PolylineID"),
         jointType: JointType.round,
         points: pLineCoOrdinatesList,

@@ -33,7 +33,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           onTap: () => Navigator.of(context).pop(),
                           child: const Icon(
                             Icons.arrow_back,
-                            color: Colors.white,
+                            color: Colors.black,
                           ),
                         ),
                         const Center(
