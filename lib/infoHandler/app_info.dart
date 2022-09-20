@@ -3,7 +3,7 @@ import 'package:swifttra/models/directions.dart';
 import 'package:swifttra/models/trips_history_model.dart';
 
 class AppInfo extends ChangeNotifier {
-  Directions? userPickUpLocation, userDropOffLocation;
+  Directions? userPickUpLocation, userDropOffLocation, manualPickUpLocation;
   int countTotalTrips = 0;
   List<String> historyTripsKeysList = [];
   List<TripsHistoryModel> allTripsHistoryInformationList = [];
@@ -15,6 +15,11 @@ class AppInfo extends ChangeNotifier {
 
   void updateDropOffLocationAddress(Directions dropOffAddress) {
     userDropOffLocation = dropOffAddress;
+    notifyListeners();
+  }
+
+  void updateManualPickUpLocationAddress(Directions manualPickUpAddress) {
+    manualPickUpLocation = manualPickUpAddress;
     notifyListeners();
   }
 

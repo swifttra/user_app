@@ -1,8 +1,9 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:swifttra/models/trips_history_model.dart';
 
-// ignore: must_be_immutable
 class HistoryDesignUIWidget extends StatefulWidget {
   TripsHistoryModel? tripsHistoryModel;
 
@@ -26,7 +27,7 @@ class _HistoryDesignUIWidgetState extends State<HistoryDesignUIWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      color: Colors.black54,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         child: Column(
@@ -42,6 +43,7 @@ class _HistoryDesignUIWidgetState extends State<HistoryDesignUIWidget> {
                     "Driver : ${widget.tripsHistoryModel!.driverName!}",
                     style: const TextStyle(
                       fontSize: 16,
+                      fontFamily: 'Oxygen',
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -50,8 +52,7 @@ class _HistoryDesignUIWidgetState extends State<HistoryDesignUIWidget> {
                   width: 12,
                 ),
                 Text(
-                  // ignore: unnecessary_string_escapes
-                  "\₦ ${widget.tripsHistoryModel!.fareAmount!}",
+                  "₦ ${widget.tripsHistoryModel!.fareAmount!}",
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -79,7 +80,8 @@ class _HistoryDesignUIWidgetState extends State<HistoryDesignUIWidget> {
                   widget.tripsHistoryModel!.car_details!,
                   style: const TextStyle(
                     fontSize: 16,
-                    color: Colors.black,
+                    fontFamily: 'Oxygen',
+                    color: Colors.orangeAccent,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -107,6 +109,7 @@ class _HistoryDesignUIWidgetState extends State<HistoryDesignUIWidget> {
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
                       fontSize: 16,
+                      fontFamily: 'Oxygen',
                     ),
                   ),
                 ),
@@ -134,6 +137,7 @@ class _HistoryDesignUIWidgetState extends State<HistoryDesignUIWidget> {
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
                       fontSize: 16,
+                      fontFamily: 'Oxygen',
                     ),
                   ),
                 ),
@@ -152,7 +156,7 @@ class _HistoryDesignUIWidgetState extends State<HistoryDesignUIWidget> {
                 Text(
                   formatDateAndTime(widget.tripsHistoryModel!.time!),
                   style: const TextStyle(
-                    color: Colors.black,
+                    color: Colors.orange,
                   ),
                 ),
               ],

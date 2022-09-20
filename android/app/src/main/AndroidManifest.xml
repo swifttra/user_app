@@ -4,6 +4,7 @@
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
+
    <application
         android:label="swifttra"
         android:name="${applicationName}"
@@ -36,7 +37,20 @@
             android:value="2" />
 
             <meta-data android:name="com.google.android.geo.API_KEY"
-               android:value="AIzaSyD6K2hE1vRWb3Dhk9YVZmhfohcaJZ96cXE"/>
+               android:value="AIzaSyAEgUj9Q68SMKw1ND0Z112jsZAfUiIc4CI"/>
 
     </application>
+    <!-- Provide required visibility configuration for API level 30 and above -->
+<queries>
+  <!-- If your app checks for SMS support -->
+  <intent>
+    <action android:name="android.intent.action.VIEW" />
+    <data android:scheme="sms" />
+  </intent>
+  <!-- If your app checks for call support -->
+  <intent>
+    <action android:name="android.intent.action.VIEW" />
+    <data android:scheme="tel" />
+  </intent>
+</queries>
 </manifest>

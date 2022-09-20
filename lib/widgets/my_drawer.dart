@@ -101,11 +101,14 @@ class _MyDrawerState extends State<MyDrawer> {
             ),
           ),
 
-          const SizedBox(height: 10.0),
-
-          const SizedBox(
-            height: 12.0,
+          const Divider(
+            height: 1,
+            indent: 20, // empty space to the leading edge of divider.
+            endIndent: 20, // empty space to the trailing edge of the divider.
+            thickness: 0.2,
+            color: Colors.grey,
           ),
+          const SizedBox(height: 10.0),
 
           //drawer body
           GestureDetector(
@@ -239,7 +242,7 @@ class _MyDrawerState extends State<MyDrawer> {
             color: Colors.grey,
           ),
 
-          const SizedBox(height: 257.0),
+          const SizedBox(height: 16.0),
           SizedBox(
             height: 40,
             child: ElevatedButton(

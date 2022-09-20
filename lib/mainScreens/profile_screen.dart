@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+// ignore: unused_import
+import 'package:flutter/services.dart';
 import 'package:swifttra/global/global.dart';
+import 'package:swifttra/mainScreens/main_screen.dart';
 import 'package:swifttra/widgets/info_design_ui.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -41,6 +44,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             "My Profile",
                             style: TextStyle(
                               fontSize: 18.0,
+                              fontFamily: 'Oxygen',
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
                             ),
@@ -54,16 +58,28 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
             Container(
-                width: 200,
-                height: 200,
+                width: 150,
+                height: 150,
                 alignment: Alignment.topCenter,
                 child: Image.asset("images/logo.png")),
+
+            const SizedBox(
+              height: 20,
+              width: 200,
+              child: Divider(
+                color: Colors.grey,
+                height: 0.5,
+                thickness: 0.5,
+              ),
+            ),
+
             Padding(
-              padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 4.0),
+              padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
               child: Text(
                 "${userModelCurrentInfo!.name!} ${userModelCurrentInfo!.surname!}",
                 style: const TextStyle(
                   fontSize: 20.0,
+                  fontFamily: 'Oxygen',
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
                 ),
@@ -71,7 +87,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
 
             const SizedBox(
-              height: 50,
+              height: 20,
               width: 200,
               child: Divider(
                 color: Colors.grey,
@@ -81,7 +97,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
 
             const SizedBox(
-              height: 38.0,
+              height: 8.0,
             ),
             //email
             const Padding(
@@ -91,6 +107,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16.0,
+                        color: Colors.grey,
+                        fontFamily: 'Oxygen',
                       ))),
             ),
             InfoDesignUIWidget(
@@ -99,7 +117,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
 
             const SizedBox(
-              width: 400,
+              width: 320,
               child: Divider(
                 color: Colors.grey,
                 height: 0.5,
@@ -108,7 +126,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
 
             const SizedBox(
-              height: 38.0,
+              height: 20.0,
             ),
             //email
             const Padding(
@@ -118,6 +136,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16.0,
+                        color: Colors.grey,
+                        fontFamily: 'Oxygen',
                       ))),
             ),
             InfoDesignUIWidget(

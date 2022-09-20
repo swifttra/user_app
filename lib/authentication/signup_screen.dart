@@ -104,6 +104,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 "Sign Up",
                 style: TextStyle(
                   fontSize: 26,
+                  fontFamily: 'Oxygen',
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
                 ),
@@ -115,8 +116,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 controller: nameTextEditingController,
                 style: const TextStyle(color: Colors.black),
                 decoration: InputDecoration(
+                  prefixIcon: Icon(
+                    Icons.account_circle,
+                    color: Colors.grey,
+                  ),
+                  contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
                   labelText: "First name",
-                  hintText: "First name",
+                  hintText: "First name ",
                   enabledBorder: OutlineInputBorder(
                     borderSide: const BorderSide(color: Colors.grey),
                     borderRadius: BorderRadius.circular(30.0),
@@ -128,10 +134,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   hintStyle: const TextStyle(
                     color: Colors.black,
                     fontSize: 10,
+                    fontFamily: 'Oxygen',
                   ),
                   labelStyle: const TextStyle(
                     color: Colors.black,
                     fontSize: 14,
+                    fontFamily: 'Oxygen',
                   ),
                 ),
               ),
@@ -142,8 +150,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 controller: surnameTextEditingController,
                 style: const TextStyle(color: Colors.black),
                 decoration: InputDecoration(
-                  labelText: "Surname",
-                  hintText: "Surname",
+                  prefixIcon: const Icon(
+                    Icons.account_circle,
+                    color: Colors.grey,
+                  ),
+                  labelText: "Last name",
+                  hintText: "Last name",
                   enabledBorder: OutlineInputBorder(
                     borderSide: const BorderSide(color: Colors.grey),
                     borderRadius: BorderRadius.circular(30.0),
@@ -155,10 +167,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   hintStyle: const TextStyle(
                     color: Colors.black,
                     fontSize: 10,
+                    fontFamily: 'Oxygen',
                   ),
                   labelStyle: const TextStyle(
                     color: Colors.black,
                     fontSize: 14,
+                    fontFamily: 'Oxygen',
                   ),
                 ),
               ),
@@ -170,6 +184,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 keyboardType: TextInputType.emailAddress,
                 style: const TextStyle(color: Colors.black),
                 decoration: InputDecoration(
+                  prefixIcon: Icon(
+                    Icons.mail,
+                    color: Colors.grey,
+                  ),
+                  contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
                   labelText: "Email",
                   hintText: "Email",
                   enabledBorder: OutlineInputBorder(
@@ -183,10 +202,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   hintStyle: const TextStyle(
                     color: Colors.black,
                     fontSize: 10,
+                    fontFamily: 'Oxygen',
                   ),
                   labelStyle: const TextStyle(
                     color: Colors.black,
                     fontSize: 14,
+                    fontFamily: 'Oxygen',
                   ),
                 ),
               ),
@@ -198,6 +219,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 keyboardType: TextInputType.phone,
                 style: const TextStyle(color: Colors.black),
                 decoration: InputDecoration(
+                  prefixIcon: Icon(
+                    Icons.phone_android,
+                    color: Colors.grey,
+                  ),
                   labelText: "Phone",
                   hintText: "Phone",
                   enabledBorder: OutlineInputBorder(
@@ -211,10 +236,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   hintStyle: const TextStyle(
                     color: Colors.black,
                     fontSize: 10,
+                    fontFamily: 'Oxygen',
                   ),
                   labelStyle: const TextStyle(
                     color: Colors.black,
                     fontSize: 14,
+                    fontFamily: 'Oxygen',
                   ),
                 ),
               ),
@@ -227,6 +254,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 obscureText: true,
                 style: const TextStyle(color: Colors.black),
                 decoration: InputDecoration(
+                  prefixIcon: Icon(
+                    Icons.vpn_key,
+                    color: Colors.grey,
+                  ),
                   labelText: "Password",
                   hintText: "Password",
                   enabledBorder: OutlineInputBorder(
@@ -240,10 +271,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   hintStyle: const TextStyle(
                     color: Colors.black,
                     fontSize: 10,
+                    fontFamily: 'Oxygen',
                   ),
                   labelStyle: const TextStyle(
                     color: Colors.black,
                     fontSize: 14,
+                    fontFamily: 'Oxygen',
                   ),
                 ),
               ),
@@ -272,6 +305,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 18,
+                      fontFamily: 'Oxygen',
                     ),
                   ),
                 ),
@@ -285,7 +319,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
               TextButton(
                 child: const Text(
-                  "Already have an Account? Sign IN Here",
+                  "Already have an Account? Sign In Here",
                   style: TextStyle(
                     color: Colors.black,
                     decoration: TextDecoration.underline,

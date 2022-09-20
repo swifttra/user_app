@@ -1,4 +1,4 @@
-// ignore_for_file: library_private_types_in_public_api, avoid_print
+// ignore_for_file: use_build_context_synchronously
 
 import 'dart:async';
 import 'package:animated_text_kit/animated_text_kit.dart';
@@ -22,11 +22,13 @@ import 'package:swifttra/models/active_nearby_available_drivers.dart';
 import 'package:swifttra/widgets/my_drawer.dart';
 import 'package:swifttra/widgets/pay_fare_amount_dialog.dart';
 import 'package:swifttra/widgets/progress_dialog.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _MainScreenState createState() => _MainScreenState();
 }
 
@@ -97,9 +99,9 @@ class _MainScreenState extends State<MainScreen> {
         .animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
 
     String humanReadableAddress =
-        // ignore: use_build_context_synchronously
         await AssistantMethods.searchAddressForGeographicCoOrdinates(
             userCurrentPosition!, context);
+    // ignore: avoid_print
     print("this is your address = $humanReadableAddress");
 
     userName = userModelCurrentInfo!.name!;
@@ -158,6 +160,21 @@ class _MainScreenState extends State<MainScreen> {
         return;
       }
 
+      if ((eventSnap.snapshot.value as Map)["car_model"] != null) {
+        setState(() {
+          car_model = (eventSnap.snapshot.value as Map)["car_model"].toString();
+        });
+      }
+      if ((eventSnap.snapshot.value as Map)["car_color"] != null) {
+        setState(() {
+          car_color = (eventSnap.snapshot.value as Map)["car_color"].toString();
+        });
+      }
+      if ((eventSnap.snapshot.value as Map)["car_model"] != null) {
+        setState(() {
+          car_model = (eventSnap.snapshot.value as Map)["car_model"].toString();
+        });
+      }
       if ((eventSnap.snapshot.value as Map)["car_details"] != null) {
         setState(() {
           driverCarDetails =
@@ -174,8 +191,20 @@ class _MainScreenState extends State<MainScreen> {
 
       if ((eventSnap.snapshot.value as Map)["driverName"] != null) {
         setState(() {
-          driverName =
+          drivername =
               (eventSnap.snapshot.value as Map)["driverName"].toString();
+        });
+      }
+      if ((eventSnap.snapshot.value as Map)["driversurname"] != null) {
+        setState(() {
+          driversurname =
+              (eventSnap.snapshot.value as Map)["driversurname"].toString();
+        });
+      }
+      if ((eventSnap.snapshot.value as Map)["driversurname"] != null) {
+        setState(() {
+          driversurname =
+              (eventSnap.snapshot.value as Map)["driversurname"].toString();
         });
       }
 
@@ -232,7 +261,6 @@ class _MainScreenState extends State<MainScreen> {
                 String assignedDriverId =
                     (eventSnap.snapshot.value as Map)["driverId"].toString();
 
-                // ignore: use_build_context_synchronously
                 Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -273,7 +301,7 @@ class _MainScreenState extends State<MainScreen> {
 
       setState(() {
         driverRideStatus =
-            "Driver is Coming :: ${directionDetailsInfo.duration_text}";
+            "Driver is Coming in ${directionDetailsInfo.duration_text}";
       });
 
       requestPositionInfo = true;
@@ -303,7 +331,7 @@ class _MainScreenState extends State<MainScreen> {
 
       setState(() {
         driverRideStatus =
-            "Going towards Destination :: ${directionDetailsInfo.duration_text}";
+            "Arriving At Your Destination In ${directionDetailsInfo.duration_text}";
       });
 
       requestPositionInfo = true;
@@ -324,12 +352,10 @@ class _MainScreenState extends State<MainScreen> {
       });
 
       Fluttertoast.showToast(
-          msg:
-              "No Online Nearest Driver Available. Search Again after some time");
+          msg: "No Online Nearest Driver Available, Try again later.");
 
       Future.delayed(const Duration(milliseconds: 4000), () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (c) => const MainScreen()));
+        SystemNavigator.pop();
       });
 
       return;
@@ -338,7 +364,6 @@ class _MainScreenState extends State<MainScreen> {
     //active driver available
     await retrieveOnlineDriversInformation(onlineNearByAvailableDriversList);
 
-    // ignore: use_build_context_synchronously
     var response = await Navigator.push(
         context,
         MaterialPageRoute(
@@ -375,10 +400,10 @@ class _MainScreenState extends State<MainScreen> {
                       "The driver has cancelled your request. Please choose another driver.");
 
               Future.delayed(const Duration(milliseconds: 3000), () {
-                // Fluttertoast.showToast(msg: "Please Restart App Now.");
+                //  Fluttertoast.showToast(msg: "Please Restart App Now.");
 
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (c) => const MainScreen()));
+                    MaterialPageRoute(builder: ((context) => MainScreen())));
               });
             }
 
@@ -467,7 +492,7 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       key: sKey,
       drawer: SizedBox(
-        width: 265,
+        width: 255,
         child: Theme(
           data: Theme.of(context).copyWith(
             canvasColor: Colors.white,
@@ -513,7 +538,7 @@ class _MainScreenState extends State<MainScreen> {
                   sKey.currentState!.openDrawer();
                 } else {
                   //restart-refresh-minimize app progmatically
-                  Navigator.of(context).pop();
+                  SystemNavigator.pop();
                 }
               },
               child: CircleAvatar(
@@ -526,7 +551,6 @@ class _MainScreenState extends State<MainScreen> {
             ),
           ),
 
-          //ui for searching location
           Positioned(
             bottom: 0,
             left: 0,
@@ -535,7 +559,7 @@ class _MainScreenState extends State<MainScreen> {
               curve: Curves.easeIn,
               duration: const Duration(milliseconds: 120),
               child: Container(
-                height: 320,
+                height: 280,
                 decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
@@ -545,9 +569,30 @@ class _MainScreenState extends State<MainScreen> {
                 ),
                 child: Padding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 30, vertical: 60),
+                      const EdgeInsets.symmetric(horizontal: 30, vertical: 25),
                   child: Column(
                     children: [
+                      SizedBox(
+                        width: 100,
+                        height: 20,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 252, 174, 71),
+                              borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(30),
+                                topLeft: Radius.circular(30),
+                                bottomLeft: Radius.circular(30),
+                                bottomRight: Radius.circular(30),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 25,
+                      ),
                       //from
                       Row(
                         children: [
@@ -566,6 +611,7 @@ class _MainScreenState extends State<MainScreen> {
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 12,
+                                    fontFamily: 'Oxygen',
                                     fontWeight: FontWeight.bold),
                               ),
                               Text(
@@ -575,7 +621,10 @@ class _MainScreenState extends State<MainScreen> {
                                     ? "${(Provider.of<AppInfo>(context).userPickUpLocation!.locationName!).substring(0, 24)}..."
                                     : "Cannot Get Address",
                                 style: const TextStyle(
-                                    color: Colors.grey, fontSize: 16),
+                                  color: Colors.grey,
+                                  fontSize: 16,
+                                  fontFamily: 'Oxygen',
+                                ),
                               ),
                             ],
                           ),
@@ -628,6 +677,7 @@ class _MainScreenState extends State<MainScreen> {
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 12,
+                                    fontFamily: 'Oxygen',
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -640,7 +690,10 @@ class _MainScreenState extends State<MainScreen> {
                                           .locationName!
                                       : "Select Your Destination",
                                   style: const TextStyle(
-                                      color: Colors.grey, fontSize: 16),
+                                    color: Colors.grey,
+                                    fontSize: 16,
+                                    fontFamily: 'Oxygen',
+                                  ),
                                 ),
                               ],
                             ),
@@ -656,7 +709,7 @@ class _MainScreenState extends State<MainScreen> {
                         color: Colors.grey,
                       ),
 
-                      const SizedBox(height: 40.0, width: 80.0),
+                      const SizedBox(height: 25.0, width: 80.0),
 
                       SizedBox(
                         width: 350,
@@ -665,7 +718,9 @@ class _MainScreenState extends State<MainScreen> {
                             // ignore: sort_child_properties_last
                             child: const Text("Request Lift",
                                 style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 17)),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 17,
+                                    fontFamily: 'Oxygen')),
                             onPressed: () {
                               if (Provider.of<AppInfo>(context, listen: false)
                                       .userDropOffLocation !=
@@ -722,6 +777,7 @@ class _MainScreenState extends State<MainScreen> {
                         textAlign: TextAlign.center,
                         textStyle: const TextStyle(
                             fontSize: 30.0,
+                            fontFamily: 'Oxygen',
                             color: Colors.white,
                             fontWeight: FontWeight.bold),
                       ),
@@ -732,7 +788,7 @@ class _MainScreenState extends State<MainScreen> {
                         textStyle: const TextStyle(
                             fontSize: 32.0,
                             color: Colors.white,
-                            fontFamily: 'Canterbury'),
+                            fontFamily: 'Oxygen'),
                       ),
                     ],
                   ),
@@ -743,13 +799,13 @@ class _MainScreenState extends State<MainScreen> {
 
           //ui for displaying assigned driver information
           Positioned(
-            bottom: 0,
+            bottom: 30,
             left: 0,
             right: 0,
             child: Container(
               height: assignedDriverInfoContainerHeight,
               decoration: const BoxDecoration(
-                color: Colors.black87,
+                color: Colors.white,
                 borderRadius: BorderRadius.only(
                   topRight: Radius.circular(20),
                   topLeft: Radius.circular(20),
@@ -758,7 +814,7 @@ class _MainScreenState extends State<MainScreen> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 24,
-                  vertical: 20,
+                  vertical: 10,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -768,10 +824,10 @@ class _MainScreenState extends State<MainScreen> {
                       child: Text(
                         driverRideStatus,
                         style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white54,
-                        ),
+                            fontSize: 18,
+                            fontFamily: 'Oxygen',
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black),
                       ),
                     ),
 
@@ -781,37 +837,108 @@ class _MainScreenState extends State<MainScreen> {
 
                     const Divider(
                       height: 2,
-                      thickness: 2,
-                      color: Colors.white54,
+                      thickness: 1,
+                      color: Color.fromARGB(255, 255, 187, 98),
                     ),
 
                     const SizedBox(
                       height: 20.0,
-                    ),
-
-                    //driver vehicle details
-                    Text(
-                      driverCarDetails,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        color: Colors.white54,
-                      ),
-                    ),
-
-                    const SizedBox(
-                      height: 2.0,
                     ),
 
                     //driver name
-                    Text(
-                      driverName,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white54,
-                      ),
+                    Row(
+                      children: [
+                        Text(
+                          driversurname,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Oxygen',
+                            color: Colors.black,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text(
+                          drivername,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Oxygen',
+                            color: Colors.black,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 130,
+                        ),
+                        Column(
+                          children: [
+                            SizedBox(
+                              height: 60,
+                              width: 60,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(60),
+                                  color: Color.fromARGB(255, 255, 187, 98),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+
+                    const SizedBox(
+                      height: 1.0,
+                    ),
+
+                    //driver vehicle details
+                    Row(
+                      children: [
+                        Text(
+                          car_model,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.grey,
+                            fontFamily: 'Oxygen',
+                          ),
+                        ),
+                        Text(
+                          "(" + car_color + ")",
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.grey,
+                            fontFamily: 'Oxygen',
+                          ),
+                        ),
+                        Text(
+                          car_number,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.grey,
+                            fontFamily: 'Oxygen',
+                          ),
+                        ),
+                        SizedBox(
+                          width: 0,
+                        ),
+                        Text(
+                          " : " + driverPhone,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                            fontFamily: 'Oxygen',
+                          ),
+                        ),
+                      ],
                     ),
 
                     const SizedBox(
@@ -820,31 +947,41 @@ class _MainScreenState extends State<MainScreen> {
 
                     const Divider(
                       height: 2,
-                      thickness: 2,
-                      color: Colors.white54,
+                      thickness: 1,
+                      color: Color.fromARGB(255, 255, 187, 98),
                     ),
 
                     const SizedBox(
-                      height: 20.0,
+                      height: 10.0,
                     ),
 
                     //call driver button
-                    Center(
-                      child: ElevatedButton.icon(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.green,
-                        ),
-                        icon: const Icon(
-                          Icons.phone_android,
-                          color: Colors.black54,
-                          size: 22,
-                        ),
-                        label: const Text(
-                          "Call Driver",
-                          style: TextStyle(
-                            color: Colors.black54,
-                            fontWeight: FontWeight.bold,
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(35, 0, 0, 0),
+                      child: SizedBox(
+                        width: 250,
+                        height: 47,
+                        child: Center(
+                          child: ElevatedButton.icon(
+                            onPressed: () {
+                              launch("tel:$driverPhone");
+                            },
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.green,
+                            ),
+                            icon: const Icon(
+                              Icons.phone_android,
+                              color: Colors.black54,
+                              size: 22,
+                            ),
+                            label: const Text(
+                              "Call Driver",
+                              style: TextStyle(
+                                color: Colors.black54,
+                                fontFamily: 'Oxygen',
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ),
                         ),
                       ),
@@ -884,10 +1021,11 @@ class _MainScreenState extends State<MainScreen> {
       tripDirectionDetailsInfo = directionDetailsInfo;
     });
 
-    // ignore: use_build_context_synchronously
     Navigator.pop(context);
 
+    // ignore: avoid_print
     print("These are points = ");
+    // ignore: avoid_print
     print(directionDetailsInfo!.e_points);
 
     PolylinePoints pPoints = PolylinePoints();
@@ -897,11 +1035,10 @@ class _MainScreenState extends State<MainScreen> {
     pLineCoOrdinatesList.clear();
 
     if (decodedPolyLinePointsResultList.isNotEmpty) {
-      // ignore: avoid_function_literals_in_foreach_calls
-      decodedPolyLinePointsResultList.forEach((PointLatLng pointLatLng) {
+      for (var pointLatLng in decodedPolyLinePointsResultList) {
         pLineCoOrdinatesList
             .add(LatLng(pointLatLng.latitude, pointLatLng.longitude));
-      });
+      }
     }
 
     polyLineSet.clear();
@@ -909,6 +1046,7 @@ class _MainScreenState extends State<MainScreen> {
     setState(() {
       Polyline polyline = Polyline(
         color: Colors.orangeAccent,
+        width: 6,
         polylineId: const PolylineId("PolylineID"),
         jointType: JointType.round,
         points: pLineCoOrdinatesList,
@@ -967,8 +1105,8 @@ class _MainScreenState extends State<MainScreen> {
     Circle originCircle = Circle(
       circleId: const CircleId("originID"),
       fillColor: Colors.green,
-      radius: 12,
-      strokeWidth: 3,
+      radius: 6,
+      strokeWidth: 2,
       strokeColor: Colors.white,
       center: originLatLng,
     );
@@ -976,8 +1114,8 @@ class _MainScreenState extends State<MainScreen> {
     Circle destinationCircle = Circle(
       circleId: const CircleId("destinationID"),
       fillColor: Colors.red,
-      radius: 12,
-      strokeWidth: 3,
+      radius: 6,
+      strokeWidth: 2,
       strokeColor: Colors.white,
       center: destinationLatLng,
     );
@@ -994,6 +1132,7 @@ class _MainScreenState extends State<MainScreen> {
     Geofire.queryAtLocation(
             userCurrentPosition!.latitude, userCurrentPosition!.longitude, 10)!
         .listen((map) {
+      // ignore: avoid_print
       print(map);
       if (map != null) {
         var callBack = map['callBack'];
@@ -1051,7 +1190,8 @@ class _MainScreenState extends State<MainScreen> {
       markersSet.clear();
       circlesSet.clear();
 
-      Set<Marker> driversMarkerSet = <Marker>{};
+      // ignore: prefer_collection_literals
+      Set<Marker> driversMarkerSet = Set<Marker>();
 
       for (ActiveNearbyAvailableDrivers eachDriver
           in GeoFireAssistant.activeNearbyAvailableDriversList) {
@@ -1077,7 +1217,7 @@ class _MainScreenState extends State<MainScreen> {
   createActiveNearByDriverIconMarker() {
     if (activeNearbyIcon == null) {
       ImageConfiguration imageConfiguration =
-          createLocalImageConfiguration(context, size: const Size(2, 2));
+          createLocalImageConfiguration(context, size: const Size(50, 50));
       BitmapDescriptor.fromAssetImage(imageConfiguration, "images/car.png")
           .then((value) {
         activeNearbyIcon = value;

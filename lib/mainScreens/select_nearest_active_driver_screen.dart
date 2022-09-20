@@ -24,24 +24,17 @@ class _SelectNearestActiveDriversScreenState
 
   getFareAmountAccordingToVehicleType(int index) {
     if (tripDirectionDetailsInfo != null) {
-      if (dList[index]["car_details"]["type"].toString() == "bike") {
-        fareAmount =
-            (AssistantMethods.calculateFareAmountFromOriginToDestination(
-                        tripDirectionDetailsInfo!) /
-                    2)
-                .toStringAsFixed(1);
-      }
       if (dList[index]["car_details"]["type"].toString() ==
-          "uber-x") //means executive type of car - more comfortable pro level
+          "Comfort") //means executive type of car - more comfortable pro level
       {
         fareAmount =
             (AssistantMethods.calculateFareAmountFromOriginToDestination(
                         tripDirectionDetailsInfo!) *
-                    2)
+                    0.4)
                 .toStringAsFixed(1);
       }
       if (dList[index]["car_details"]["type"].toString() ==
-          "uber-go") // non - executive car - comfortable
+          "Standard") // non - executive car - comfortable
       {
         fareAmount =
             (AssistantMethods.calculateFareAmountFromOriginToDestination(

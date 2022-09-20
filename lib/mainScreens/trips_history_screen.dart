@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:swifttra/infoHandler/app_info.dart';
+import 'package:swifttra/mainScreens/main_screen.dart';
 import 'package:swifttra/widgets/history_design_ui.dart';
 
 class TripsHistoryScreen extends StatefulWidget {
@@ -17,9 +18,13 @@ class _TripsHistoryScreenState extends State<TripsHistoryScreen> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.orangeAccent,
-        title: const Text("Your Ride History"),
+        elevation: 0.1,
+        title: const Text(
+          "Your Ride History",
+          selectionColor: Colors.black,
+        ),
         leading: BackButton(
-          onPressed: () => Navigator.pop(context, false),
+          onPressed: () => Navigator.of(context).pop(),
         ),
       ),
       body: ListView.separated(
@@ -30,7 +35,7 @@ class _TripsHistoryScreenState extends State<TripsHistoryScreen> {
         ),
         itemBuilder: (context, i) {
           return Card(
-            color: Colors.grey,
+            color: Colors.white,
             child: HistoryDesignUIWidget(
               tripsHistoryModel: Provider.of<AppInfo>(context, listen: false)
                   .allTripsHistoryInformationList[i],

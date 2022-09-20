@@ -19,18 +19,18 @@ class _RateDriverScreenState extends State<RateDriverScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.orange,
+      backgroundColor: Colors.white,
       body: Dialog(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(14),
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.orangeAccent,
         child: Container(
           margin: const EdgeInsets.all(8),
           width: double.infinity,
           decoration: BoxDecoration(
-            color: Colors.white54,
-            borderRadius: BorderRadius.circular(6),
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10),
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -38,13 +38,17 @@ class _RateDriverScreenState extends State<RateDriverScreen> {
               const SizedBox(
                 height: 22.0,
               ),
-              const Text(
-                "Rate Your Trip Experience",
-                style: TextStyle(
-                  fontSize: 22,
-                  letterSpacing: 2,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black54,
+              Padding(
+                padding: const EdgeInsets.fromLTRB(2, 0, 0, 0),
+                child: const Text(
+                  "Rate Your Trip Experience",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontFamily: 'Oxygen',
+                    letterSpacing: 2,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black54,
+                  ),
                 ),
               ),
               const SizedBox(
@@ -53,13 +57,17 @@ class _RateDriverScreenState extends State<RateDriverScreen> {
               const Divider(
                 height: 4.0,
                 thickness: 4.0,
+                color: Colors.orangeAccent,
+              ),
+              const SizedBox(
+                height: 22.0,
               ),
               SmoothStarRating(
                 rating: countRatingStars,
                 allowHalfRating: false,
                 starCount: 5,
-                color: Colors.white,
-                borderColor: Colors.white,
+                color: Colors.orangeAccent,
+                borderColor: Colors.orangeAccent,
                 size: 46,
                 onRatingChanged: (valueOfStarsChoosed) {
                   countRatingStars = valueOfStarsChoosed;
@@ -98,8 +106,9 @@ class _RateDriverScreenState extends State<RateDriverScreen> {
                 titleStarsRating,
                 style: const TextStyle(
                   fontSize: 30,
+                  fontFamily: 'Oxygen',
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                  color: Colors.orangeAccent,
                 ),
               ),
               const SizedBox(
@@ -131,20 +140,15 @@ class _RateDriverScreenState extends State<RateDriverScreen> {
                       Fluttertoast.showToast(msg: "Please Restart App Now");
                     });
                   },
-                  style: ButtonStyle(
-                      foregroundColor: MaterialStateProperty.all<Color>(
-                        Colors.white,
-                      ),
-                      backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.orangeAccent),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(25.0),
-                      ))),
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.orangeAccent,
+                    padding: const EdgeInsets.symmetric(horizontal: 74),
+                  ),
                   child: const Text(
                     "Submit",
                     style: TextStyle(
                       fontSize: 20,
+                      fontFamily: 'Oxygen',
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),

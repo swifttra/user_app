@@ -17,12 +17,12 @@ class _PayFareAmountDialogState extends State<PayFareAmountDialog> {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(14),
       ),
-      backgroundColor: Colors.white,
+      //  backgroundColor: Colors.white,
       child: Container(
         margin: const EdgeInsets.all(6),
         width: double.infinity,
         decoration: BoxDecoration(
-          color: Colors.orange,
+          color: Colors.white,
           borderRadius: BorderRadius.circular(6),
         ),
         child: Column(
@@ -37,6 +37,7 @@ class _PayFareAmountDialogState extends State<PayFareAmountDialog> {
                 fontWeight: FontWeight.bold,
                 color: Colors.orange,
                 fontSize: 16,
+                fontFamily: 'Oxygen',
               ),
             ),
             const SizedBox(
@@ -44,7 +45,7 @@ class _PayFareAmountDialogState extends State<PayFareAmountDialog> {
             ),
             const Divider(
               thickness: 4,
-              color: Colors.orange,
+              color: Colors.grey,
             ),
             const SizedBox(
               height: 16,
@@ -53,8 +54,9 @@ class _PayFareAmountDialogState extends State<PayFareAmountDialog> {
               widget.fareAmount.toString(),
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
-                color: Colors.orange,
+                color: Colors.black,
                 fontSize: 50,
+                fontFamily: 'Oxygen',
               ),
             ),
             const SizedBox(
@@ -63,10 +65,10 @@ class _PayFareAmountDialogState extends State<PayFareAmountDialog> {
             const Padding(
               padding: EdgeInsets.all(8.0),
               child: Text(
-                "This is the total trip fare amount, Please Pay it to the driver.",
+                "This is the total trip fare amount, Please Pay it to the driver ",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: Colors.orange,
+                  color: Colors.grey,
                 ),
               ),
             ),
@@ -77,7 +79,7 @@ class _PayFareAmountDialogState extends State<PayFareAmountDialog> {
               padding: const EdgeInsets.all(18.0),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green,
+                  primary: Colors.orangeAccent,
                 ),
                 onPressed: () {
                   Future.delayed(const Duration(milliseconds: 2000), () {
@@ -91,7 +93,8 @@ class _PayFareAmountDialogState extends State<PayFareAmountDialog> {
                       "Pay Cash",
                       style: TextStyle(
                         fontSize: 20,
-                        color: Colors.orange,
+                        fontFamily: 'Oxygen',
+                        color: Colors.white,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -99,7 +102,7 @@ class _PayFareAmountDialogState extends State<PayFareAmountDialog> {
                       "₦  ${widget.fareAmount!}",
                       style: const TextStyle(
                         fontSize: 20,
-                        color: Colors.orange,
+                        color: Colors.white,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

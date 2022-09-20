@@ -96,6 +96,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   fontSize: 26,
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
+                  fontFamily: 'Oxygen',
                 ),
               ),
               const SizedBox(
@@ -119,10 +120,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   hintStyle: const TextStyle(
                     color: Colors.black,
                     fontSize: 10,
+                    fontFamily: 'Oxygen',
                   ),
                   labelStyle: const TextStyle(
                     color: Colors.black,
                     fontSize: 14,
+                    fontFamily: 'Oxygen',
                   ),
                 ),
               ),
@@ -148,10 +151,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   hintStyle: const TextStyle(
                     color: Colors.black,
                     fontSize: 10,
+                    fontFamily: 'Oxygen',
                   ),
                   labelStyle: const TextStyle(
                     color: Colors.black,
                     fontSize: 14,
+                    fontFamily: 'Oxygen',
                   ),
                 ),
               ),
@@ -180,6 +185,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 18,
+                      fontFamily: 'Oxygen',
                     ),
                   ),
                 ),

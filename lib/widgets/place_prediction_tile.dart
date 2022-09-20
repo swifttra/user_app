@@ -24,7 +24,7 @@ class _PlacePredictionTileDesignState extends State<PlacePredictionTileDesign> {
     showDialog(
       context: context,
       builder: (BuildContext context) => ProgressDialog(
-        message: "Setting Up Drop-Off, Please wait...",
+        message: "Setting Up Your Destination",
       ),
     );
 
@@ -93,6 +93,7 @@ class _PlacePredictionTileDesignState extends State<PlacePredictionTileDesign> {
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
                       fontSize: 16.0,
+                      fontFamily: 'Oxygen',
                       color: Colors.black,
                     ),
                   ),
@@ -104,6 +105,7 @@ class _PlacePredictionTileDesignState extends State<PlacePredictionTileDesign> {
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
                       fontSize: 12.0,
+                      fontFamily: 'Oxygen',
                       color: Colors.grey,
                     ),
                   ),

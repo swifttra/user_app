@@ -51,22 +51,22 @@ class _SearchPlacesScreenState extends State<SearchPlacesScreen> {
         children: [
           //search place ui
           Container(
-            height: 180,
+            height: 155,
             decoration: const BoxDecoration(
-              color: Colors.orangeAccent,
+              color: Colors.white,
             ),
             child: Padding(
               padding: const EdgeInsets.all(10.0),
               child: Column(
                 children: [
-                  const SizedBox(height: 25.0),
+                  const SizedBox(height: 35.0),
                   Stack(
                     children: [
                       GestureDetector(
                         onTap: () => Navigator.of(context).pop(),
                         child: const Icon(
                           Icons.arrow_back,
-                          color: Colors.white,
+                          color: Colors.black,
                         ),
                       ),
                       const Center(
@@ -74,19 +74,20 @@ class _SearchPlacesScreenState extends State<SearchPlacesScreen> {
                           "Search Destination",
                           style: TextStyle(
                             fontSize: 18.0,
-                            color: Colors.white,
+                            fontFamily: 'Oxygen',
+                            color: Colors.black,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 16.0),
+                  const SizedBox(height: 5.0),
                   Row(
                     children: [
                       const Icon(
                         Icons.search_rounded,
-                        color: Colors.white,
+                        color: Colors.orangeAccent,
                       ),
                       const SizedBox(
                         width: 2.0,
@@ -100,14 +101,15 @@ class _SearchPlacesScreenState extends State<SearchPlacesScreen> {
                             },
                             decoration: InputDecoration(
                               hintText: "Search Here",
-                              border: OutlineInputBorder(
+                              focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
                                 borderSide: const BorderSide(
-                                  width: 0,
+                                  width: 1,
                                   style: BorderStyle.none,
+                                  //color: Colors.black,
                                 ),
                               ),
-                              fillColor: Colors.white,
+                              fillColor: Color.fromARGB(255, 243, 243, 243),
                               filled: true,
                               contentPadding: const EdgeInsets.only(
                                 left: 11.0,
@@ -124,7 +126,10 @@ class _SearchPlacesScreenState extends State<SearchPlacesScreen> {
               ),
             ),
           ),
-
+          Divider(
+            thickness: 0.5,
+            color: Colors.grey,
+          ),
           //display place predictions result
           (placesPredictedList.isNotEmpty)
               ? Expanded(
@@ -139,8 +144,8 @@ class _SearchPlacesScreenState extends State<SearchPlacesScreen> {
                     separatorBuilder: (BuildContext context, int index) {
                       return const Divider(
                         height: 0.5,
-                        color: Color.fromARGB(255, 244, 244, 244),
-                        thickness: 1,
+                        color: Colors.grey,
+                        thickness: 0.4,
                       );
                     },
                   ),
