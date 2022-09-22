@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:swifttra/Payment/payment_screen.dart';
 
 // ignore: must_be_immutable
 class PayFareAmountDialog extends StatefulWidget {
@@ -36,7 +37,7 @@ class _PayFareAmountDialogState extends State<PayFareAmountDialog> {
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 color: Colors.orange,
-                fontSize: 16,
+                fontSize: 18,
                 fontFamily: 'Oxygen',
               ),
             ),
@@ -44,19 +45,18 @@ class _PayFareAmountDialogState extends State<PayFareAmountDialog> {
               height: 20,
             ),
             const Divider(
-              thickness: 4,
+              thickness: 2,
               color: Colors.grey,
             ),
             const SizedBox(
               height: 16,
             ),
             Text(
-              widget.fareAmount.toString(),
+              "₦" + widget.fareAmount.toString(),
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 color: Colors.black,
                 fontSize: 50,
-                fontFamily: 'Oxygen',
               ),
             ),
             const SizedBox(
@@ -75,6 +75,13 @@ class _PayFareAmountDialogState extends State<PayFareAmountDialog> {
             const SizedBox(
               height: 10,
             ),
+            const Divider(
+              thickness: 2,
+              color: Colors.grey,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
             Padding(
               padding: const EdgeInsets.all(18.0),
               child: ElevatedButton(
@@ -88,6 +95,7 @@ class _PayFareAmountDialogState extends State<PayFareAmountDialog> {
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  // ignore: prefer_const_literals_to_create_immutables
                   children: [
                     const Text(
                       "Pay Cash",
@@ -98,15 +106,50 @@ class _PayFareAmountDialogState extends State<PayFareAmountDialog> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Text(
-                      "₦  ${widget.fareAmount!}",
-                      style: const TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                    // Text(
+                    //   "₦  ${widget.fareAmount!}",
+                    //   style: const TextStyle(
+                    //     fontSize: 20,
+                    //     color: Colors.white,
+                    //     fontWeight: FontWeight.bold,
+                    //   ),
+                    // ),
                   ],
+                ),
+              ),
+            ),
+            const Text(
+              "OR",
+              style: TextStyle(color: Colors.grey),
+            ),
+            const SizedBox(
+              height: 20.0,
+            ),
+            SizedBox(
+              width: 230,
+              height: 30,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (c) => const PaymentScreen()));
+                },
+                style: ButtonStyle(
+                    foregroundColor: MaterialStateProperty.all<Color>(
+                      Colors.white,
+                    ),
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                        const Color.fromARGB(255, 246, 246, 246)),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ))),
+                child: const Text(
+                  "Transfer",
+                  style: TextStyle(
+                    color: Colors.orangeAccent,
+                    fontSize: 18,
+                    fontFamily: 'Oxygen',
+                  ),
                 ),
               ),
             ),

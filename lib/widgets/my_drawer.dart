@@ -3,7 +3,7 @@ import 'package:swifttra/global/global.dart';
 import 'package:swifttra/mainScreens/profile_screen.dart';
 import 'package:swifttra/mainScreens/trips_history_screen.dart';
 import 'package:swifttra/splashScreen/splash_screen.dart';
-import '../mainScreens/payment_screen.dart';
+import '../Payment/payment_screen.dart';
 
 // ignore: must_be_immutable
 class MyDrawer extends StatefulWidget {

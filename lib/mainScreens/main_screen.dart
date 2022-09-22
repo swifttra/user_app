@@ -4,7 +4,6 @@ import 'dart:async';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_geofire/flutter_geofire.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -15,12 +14,10 @@ import 'package:swifttra/assistants/assistant_methods.dart';
 import 'package:swifttra/assistants/geofire_assistant.dart';
 import 'package:swifttra/global/global.dart';
 import 'package:swifttra/infoHandler/app_info.dart';
-import 'package:swifttra/mainScreens/rate_driver_screen.dart';
 import 'package:swifttra/mainScreens/search_places_screen.dart';
 import 'package:swifttra/mainScreens/select_nearest_active_driver_screen.dart';
 import 'package:swifttra/models/active_nearby_available_drivers.dart';
 import 'package:swifttra/widgets/my_drawer.dart';
-import 'package:swifttra/widgets/pay_fare_amount_dialog.dart';
 import 'package:swifttra/widgets/progress_dialog.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -242,38 +239,7 @@ class _MainScreenState extends State<MainScreen> {
         }
 
         //status = ended
-        if (userRideRequestStatus == "ended") {
-          if ((eventSnap.snapshot.value as Map)["fareAmount"] != null) {
-            double fareAmount = double.parse(
-                (eventSnap.snapshot.value as Map)["fareAmount"].toString());
 
-            var response = await showDialog(
-              context: context,
-              barrierDismissible: false,
-              builder: (BuildContext c) => PayFareAmountDialog(
-                fareAmount: fareAmount,
-              ),
-            );
-
-            if (response == "cashPayed") {
-              //user can rate the driver now
-              if ((eventSnap.snapshot.value as Map)["driverId"] != null) {
-                String assignedDriverId =
-                    (eventSnap.snapshot.value as Map)["driverId"].toString();
-
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (c) => RateDriverScreen(
-                              assignedDriverId: assignedDriverId,
-                            )));
-
-                referenceRideRequest!.onDisconnect();
-                tripRideRequestInfoStreamSubscription!.cancel();
-              }
-            }
-          }
-        }
       }
     });
 
@@ -355,7 +321,7 @@ class _MainScreenState extends State<MainScreen> {
           msg: "No Online Nearest Driver Available, Try again later.");
 
       Future.delayed(const Duration(milliseconds: 4000), () {
-        SystemNavigator.pop();
+        Navigator.pop(context);
       });
 
       return;
@@ -538,7 +504,7 @@ class _MainScreenState extends State<MainScreen> {
                   sKey.currentState!.openDrawer();
                 } else {
                   //restart-refresh-minimize app progmatically
-                  SystemNavigator.pop();
+                  Navigator.pop(context);
                 }
               },
               child: CircleAvatar(
@@ -899,25 +865,7 @@ class _MainScreenState extends State<MainScreen> {
                     Row(
                       children: [
                         Text(
-                          car_model,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            fontSize: 16,
-                            color: Colors.grey,
-                            fontFamily: 'Oxygen',
-                          ),
-                        ),
-                        Text(
-                          "(" + car_color + ")",
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            fontSize: 16,
-                            color: Colors.grey,
-                            fontFamily: 'Oxygen',
-                          ),
-                        ),
-                        Text(
-                          car_number,
+                          car_details,
                           textAlign: TextAlign.center,
                           style: const TextStyle(
                             fontSize: 16,

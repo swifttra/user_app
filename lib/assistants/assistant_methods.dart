@@ -86,13 +86,23 @@ class AssistantMethods {
   static double calculateFareAmountFromOriginToDestination(
       DirectionDetailsInfo directionDetailsInfo) {
     double timeTraveledFareAmountPerMinute =
-        (directionDetailsInfo.duration_value! / 60) * 45;
+        (directionDetailsInfo.duration_value! / 1) * 100;
     double distanceTraveledFareAmountPerKilometer =
         (directionDetailsInfo.duration_value! / 1000) * 95;
+    double delayTraveledFareAmountPerminute =
+        (directionDetailsInfo.duration_value! / 4) * 100;
 
     //NGN
     double totalFareAmount = timeTraveledFareAmountPerMinute +
         distanceTraveledFareAmountPerKilometer;
+    if (timeTraveledFareAmountPerMinute > timeTraveledFareAmountPerMinute) {
+      totalFareAmount =
+          timeTraveledFareAmountPerMinute + delayTraveledFareAmountPerminute;
+    } else if (timeTraveledFareAmountPerMinute ==
+        timeTraveledFareAmountPerMinute) {
+      double totalFareAmount = timeTraveledFareAmountPerMinute +
+          distanceTraveledFareAmountPerKilometer;
+    }
 
     return double.parse(totalFareAmount.toStringAsFixed(1));
   }

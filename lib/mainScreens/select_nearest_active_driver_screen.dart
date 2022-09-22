@@ -61,7 +61,7 @@ class _SelectNearestActiveDriversScreenState
           icon: const Icon(Icons.close, color: Colors.white),
           onPressed: () {
             //delete/remove the ride request from database
-            widget.referenceRideRequest!.remove();
+            Navigator.pop(context);
             Fluttertoast.showToast(msg: "you have cancelled the ride request.");
 
             Navigator.pop(context);

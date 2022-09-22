@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:smooth_star_rating_null_safety/smooth_star_rating_null_safety.dart';
 import 'package:swifttra/global/global.dart';
+import 'package:swifttra/mainScreens/main_screen.dart';
 
 // ignore: must_be_immutable
 class RateDriverScreen extends StatefulWidget {
@@ -134,7 +135,11 @@ class _RateDriverScreenState extends State<RateDriverScreen> {
                             (pastRatings + countRatingStars) / 2;
                         rateDriverRef.set(newAverageRatings.toString());
 
-                        SystemNavigator.pop();
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const MainScreen()),
+                        );
                       }
 
                       Fluttertoast.showToast(msg: "Please Restart App Now");
