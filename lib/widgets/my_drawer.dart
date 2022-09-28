@@ -108,7 +108,7 @@ class _MyDrawerState extends State<MyDrawer> {
             thickness: 0.2,
             color: Colors.grey,
           ),
-          const SizedBox(height: 10.0),
+          const SizedBox(height: 12.0),
 
           //drawer body
           GestureDetector(
@@ -242,9 +242,9 @@ class _MyDrawerState extends State<MyDrawer> {
             color: Colors.grey,
           ),
 
-          const SizedBox(height: 16.0),
+          const SizedBox(height: 20.0),
           SizedBox(
-            height: 40,
+            height: 65,
             child: ElevatedButton(
               onPressed: () {
                 fAuth.signOut();

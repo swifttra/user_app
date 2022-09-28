@@ -157,21 +157,6 @@ class _MainScreenState extends State<MainScreen> {
         return;
       }
 
-      if ((eventSnap.snapshot.value as Map)["car_model"] != null) {
-        setState(() {
-          car_model = (eventSnap.snapshot.value as Map)["car_model"].toString();
-        });
-      }
-      if ((eventSnap.snapshot.value as Map)["car_color"] != null) {
-        setState(() {
-          car_color = (eventSnap.snapshot.value as Map)["car_color"].toString();
-        });
-      }
-      if ((eventSnap.snapshot.value as Map)["car_model"] != null) {
-        setState(() {
-          car_model = (eventSnap.snapshot.value as Map)["car_model"].toString();
-        });
-      }
       if ((eventSnap.snapshot.value as Map)["car_details"] != null) {
         setState(() {
           driverCarDetails =
@@ -862,33 +847,71 @@ class _MainScreenState extends State<MainScreen> {
                     ),
 
                     //driver vehicle details
-                    Row(
+                    Column(
                       children: [
-                        Text(
-                          car_details,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            fontSize: 16,
-                            color: Colors.grey,
-                            fontFamily: 'Oxygen',
-                          ),
-                        ),
-                        SizedBox(
-                          width: 0,
-                        ),
-                        Text(
-                          " : " + driverPhone,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                            fontFamily: 'Oxygen',
-                          ),
+                        Row(
+                          children: [
+                            Text(
+                              drivername,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                                fontFamily: 'Oxygen',
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              driverCarDetails,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                fontSize: 18,
+                                color: Colors.grey,
+                                fontFamily: 'Oxygen',
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              car_number,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                                fontFamily: 'Oxygen',
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
-
+                    Row(children: [
+                      const SizedBox(
+                        height: 60,
+                        width: 60,
+                        child: CircleAvatar(
+                          backgroundColor: Colors.orangeAccent,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        driverPhone,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          fontFamily: 'Oxygen',
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                          fontSize: 15,
+                        ),
+                      ),
+                    ]),
                     const SizedBox(
                       height: 20.0,
                     ),

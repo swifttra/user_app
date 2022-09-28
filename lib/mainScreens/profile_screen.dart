@@ -144,6 +144,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
               textInfo: userModelCurrentInfo!.phone!,
               iconData: Icons.phone_android_rounded,
             ),
+            const SizedBox(
+              width: 320,
+              child: Divider(
+                color: Colors.grey,
+                height: 0.5,
+                thickness: 0.5,
+              ),
+            ),
 
             const SizedBox(
               height: 20,
